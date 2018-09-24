@@ -1,11 +1,12 @@
 {
 	"name": "ts-ssr-kit",
 	"version": "1.0.0",
-	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"init": "npm i --save autoprefixer awesome-typescript-loader css-loader extract-loader file-loader node-sass postcss-loader source-map-loader style-loader typescript webpack webpack-cli webpack-dev-server @types/react @types/react-dom @types/react-redux react react-dom react-redux react-router-dom react-router-config redux redux-thunk axios es6-promise compression concurrently express express-http-proxy lodash nodemon npm-run-all react-helmet serialize-javascript"
+		"init": "npm i --save autoprefixer awesome-typescript-loader css-loader extract-loader file-loader node-sass postcss-loader source-map-loader style-loader typescript webpack webpack-cli webpack-dev-server @types/react @types/react-dom @types/react-redux react react-dom react-redux react-router-dom react-router-config redux redux-thunk axios es6-promise compression concurrently express express-http-proxy lodash nodemon npm-run-all react-helmet serialize-javascript",
+		"dev:server": "nodemon --watch ./build --exec \"node ./build/bundle.js\"",
+		"dev:build:server": "webpack --config webpack.server.js --watch"
 	},
 	"author": "",
 	"license": "ISC",
@@ -40,9 +41,12 @@
 		"serialize-javascript": "^1.5.0",
 		"source-map-loader": "^0.2.4",
 		"style-loader": "^0.23.0",
+		"tslint": "^5.11.0",
 		"typescript": "^3.0.3",
 		"webpack": "^4.19.1",
 		"webpack-cli": "^3.1.1",
 		"webpack-dev-server": "^3.1.8"
-	}
+	},
+	"devDependencies": {},
+	"description": ""
 }
