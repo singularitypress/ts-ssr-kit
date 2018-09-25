@@ -6,7 +6,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"init": "npm i --save autoprefixer awesome-typescript-loader css-loader extract-loader file-loader node-sass postcss-loader source-map-loader style-loader typescript webpack webpack-cli webpack-dev-server @types/react @types/react-dom @types/react-redux react react-dom react-redux react-router-dom react-router-config redux redux-thunk axios es6-promise compression concurrently express express-http-proxy lodash nodemon npm-run-all react-helmet serialize-javascript",
 		"dev:server": "nodemon --watch ./build --exec \"node ./build/bundle.js\"",
-		"dev:build:server": "webpack --config webpack.server.js --watch"
+		"dev:build:server": "webpack --config webpack.server.js --watch",
+		"dev:build:client": "webpack --config webpack.client.js --watch"
 	},
 	"author": "",
 	"license": "ISC",

@@ -4,12 +4,13 @@ import { renderToString } from "react-dom/server";
 import Home from "./client/components/Home";
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.get("/", (req: any, res: any) => {
   const content = renderToString(<Home />);
   res.send(content);
 });
 
-app.listen(3000, () => {
-  console.log("listening on port 3000");
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
 });
