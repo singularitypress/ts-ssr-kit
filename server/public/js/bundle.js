@@ -81,19 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/client/client.tsx");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/client.tsx");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/client/client.tsx":
-/*!*******************************!*\
-  !*** ./src/client/client.tsx ***!
-  \*******************************/
+/***/ "./src/client.tsx":
+/*!************************!*\
+  !*** ./src/client.tsx ***!
+  \************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/*\r\n  Startup point for the clientside application\r\n*/\r\nconsole.log(\"hello world\");\r\n\n\n//# sourceURL=webpack:///./src/client/client.tsx?");
+eval("/*\r\n  Startup point for the clientside application\r\n*/\r\nconsole.log(\"hello world\");\r\n\n\n//# sourceURL=webpack:///./src/client.tsx?");
 
 /***/ })
 

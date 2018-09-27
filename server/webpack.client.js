@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const path = require("path");
 
 const BUILD_DIR = path.resolve(__dirname, "public");
-const APP_DIR = path.resolve(__dirname, "src/client");
+const APP_DIR = path.resolve(__dirname, "src");
 const NODE_MODULES = path.resolve(__dirname, "node_modules");
 const NAME = "bundle";
 
