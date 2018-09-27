@@ -15,7 +15,7 @@ var config = () => {
 		},
 		output: {
 			path: BUILD_DIR,
-			filename: `${NAME}.js`,
+			filename: `js/${NAME}.js`,
 		},
 		module: {
 			rules: [
