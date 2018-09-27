@@ -1,22 +1,21 @@
 const webpack = require("webpack");
 const path = require("path");
 
-const BUILD_DIR = path.resolve(__dirname, "build");
+const BUILD_DIR = path.resolve(__dirname, "public");
 const APP_DIR = path.resolve(__dirname, "src");
 const NODE_MODULES = path.resolve(__dirname, "node_modules");
 const NAME = "bundle";
 
 var config = () => {
 	return {
-		target: "node",
-		mode: "production",
-		entry: `${APP_DIR}/server.tsx`,
+		mode: "development",
+		entry: `${APP_DIR}/client.tsx`,
 		resolve: {
 			extensions: [".ts", ".js", ".json", ".tsx", ".jsx"],
 		},
 		output: {
 			path: BUILD_DIR,
-			filename: `${NAME}.js`,
+			filename: `js/${NAME}.js`,
 		},
 		module: {
 			rules: [
