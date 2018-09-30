@@ -4,8 +4,14 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import Home from "./client/components/Home";
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./Routes";
 
 const root = document.querySelector("#root");
 
-ReactDOM.hydrate(<Home />, root);
+ReactDOM.hydrate(
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>,
+  root
+);
