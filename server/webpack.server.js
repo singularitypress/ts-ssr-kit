@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
+const webpackNodeExternals = require("webpack-node-externals");
 
 const BUILD_DIR = path.resolve(__dirname, "build");
 const APP_DIR = path.resolve(__dirname, "src");
@@ -37,6 +38,9 @@ var config = () => {
 		devServer: {
 			historyApiFallback: true,
 		},
+
+		// Exclude imports in the project from the bundle.js (server-side only) as the server will now dynamically pull it in from node_modules.
+		externals: [webpackNodeExternals()],
 	};
 };
 
