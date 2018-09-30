@@ -4,8 +4,8 @@ import Home from "./client/components/Home";
 
 export default () => {
   return (
-    <div>
+    <React.Fragment>
       <Route exact path="/" component={Home} />
-    </div>
+    </React.Fragment>
   );
 };
