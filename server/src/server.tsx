@@ -1,5 +1,5 @@
 import * as express from "express";
-import renderer from "./helpers/renderer";
+import { renderer, setStore } from "./helpers";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -7,7 +7,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static("public"));
 
 app.get("*", (req: any, res: any) => {
-  res.send(renderer(req));
+  const store = setStore();
+
+  res.send(renderer(req, store));
 });
 
 app.listen(PORT, () => {
