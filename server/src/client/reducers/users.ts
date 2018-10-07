@@ -1,9 +1,9 @@
-import { FETCH_USERS } from "../actions";
-import { ActionGet } from "./../../types/index";
+import { ActionGet } from "./../../types";
+import { ActionTypes } from "./../../data/ActionTypes";
 
 export const users = (
   state = [{ id: 0, name: "default user" }],
   action: ActionGet
 ) => {
-  return action.type === FETCH_USERS ? action.payload.data : state;
+  return action.type === ActionTypes.FETCH_USERS ? action.payload.data : state;
 };
