@@ -1,8 +1,10 @@
 {
-    "editor.formatOnSave": true,
+	"editor.formatOnSave": true,
     "prettier.useTabs": true,
-    "tslint.enable": false,
-    "tslint.jsEnable": true,
-    "prettier.tslintIntegration": true,
-    "editor.tabSize": 2
+	"tslint.jsEnable": true,
+	"prettier.tslintIntegration": true,
+	"editor.tabSize": 2,
+	"tslint.alwaysShowStatus": true,
+	"tslint.autoFixOnSave": true,
+	"tslint.nodePath": "server\\node_modules\\.bin\\tslint"
 }
