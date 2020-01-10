@@ -1,8 +1,7 @@
 {
 	"editor.formatOnSave": true,
-    "prettier.useTabs": true,
+	"prettier.useTabs": true,
 	"tslint.jsEnable": true,
-	"prettier.tslintIntegration": true,
 	"editor.tabSize": 2,
 	"tslint.alwaysShowStatus": true,
 	"tslint.autoFixOnSave": true,
