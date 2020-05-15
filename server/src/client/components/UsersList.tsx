@@ -9,27 +9,27 @@ interface props {
 }
 
 class UsersList extends React.Component<props> {
-  constructor(props: props) {
+  public constructor(props: props) {
     super(props);
 
     this.renderusers = this.renderusers.bind(this);
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.props.fetchUsers();
   }
 
-  renderusers() {
-    return this.props.users.map(user => {
+  public renderusers() {
+    return this.props.users.map((user) => {
       return <li key={user.id}>{user.name}</li>;
     });
   }
 
-  render() {
+  public render() {
     console.log(this.props.users);
     return (
       <div>
-        <p>Here's a big list of users</p>
+        <p>{"Here's a big list of users"}</p>
         <ul>{this.renderusers()}</ul>
       </div>
     );
@@ -40,7 +40,4 @@ const mapStateToProps = (state: State) => {
   return { users: state.users };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchUsers }
-)(UsersList);
+export default connect(mapStateToProps, { fetchUsers })(UsersList);

@@ -19,14 +19,14 @@ const store = createStore(reducers, {}, applyMiddleware(thunk));
 const root = document.querySelector("#root");
 
 /*
-  We're using .hydrate instead of .render because it's an SSR app and we want to 
-  update what the server is already rendering versus replacing the DOM node entirely. 
+  We're using .hydrate instead of .render because it's an SSR app and we want to
+  update what the server is already rendering versus replacing the DOM node entirely.
   As per stackoverflow:
 
-    If you call ReactDOM.hydrate() on a node that already has this server-rendered markup, 
-    React will *preserve it and only attach event handlers*, allowing you to have a very 
+    If you call ReactDOM.hydrate() on a node that already has this server-rendered markup,
+    React will *preserve it and only attach event handlers*, allowing you to have a very
     performant first-load experience.
-    Render may change your node if there is a difference between the initial DOM and the 
+    Render may change your node if there is a difference between the initial DOM and the
     current DOM. hydrate will only attach event handlers.
 
     https://stackoverflow.com/questions/46516395/whats-the-difference-between-hydrate-and-render-in-react-16
@@ -40,5 +40,5 @@ ReactDOM.hydrate(
       <Routes />
     </BrowserRouter>
   </Provider>,
-  root
+  root,
 );

@@ -3,7 +3,7 @@ import { ActionTypes } from "./../../data/ActionTypes";
 
 export const users = (
   state = [{ id: 0, name: "default user" }],
-  action: ActionGet
+  action: ActionGet,
 ) => {
   return action.type === ActionTypes.FETCH_USERS ? action.payload.data : state;
 };
