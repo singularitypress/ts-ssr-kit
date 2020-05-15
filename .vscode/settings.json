@@ -1,9 +1,18 @@
 {
-	"editor.formatOnSave": true,
-	"prettier.useTabs": true,
-	"tslint.jsEnable": true,
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"eslint.options": {
+		"configFile": "./server/.eslintrc.js"
+	},
+	"javascript.preferences.quoteStyle": "double",
+	"typescript.preferences.quoteStyle": "double",
 	"editor.tabSize": 2,
-	"tslint.alwaysShowStatus": true,
-	"tslint.autoFixOnSave": true,
-	"tslint.nodePath": "server\\node_modules\\.bin\\tslint"
+	"prettier.trailingComma": "all"
 }

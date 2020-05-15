@@ -11,15 +11,16 @@ export const renderer = (req: any, store: any) => {
       <StaticRouter location={req.path} context={{}}>
         <Routes />
       </StaticRouter>
-    </Provider>
+    </Provider>,
   );
   return `
     <html>
       <head>
+        <link rel="stylesheet" href="bundle.css" type="text/css">
       </head>
       <body>
         <div id="root">${content}</div>
-        <script src="js/bundle.js"></script>
+        <script src="bundle.js"></script>
       </body>
     </html>
   `;
