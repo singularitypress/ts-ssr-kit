@@ -3,7 +3,7 @@ import * as compression from "compression";
 import { renderer, setStore } from "./helpers";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 app.use(compression());
 app.use(express.static("public"));
