@@ -1,7 +1,12 @@
 import * as React from "react";
+import UsersList from "./UsersList";
 
 const Home = () => {
-  return <div>{"I'm the GOAT home component"}</div>;
+  return (
+    <div>
+      <UsersList />
+    </div>
+  );
 };
 
 export default Home;

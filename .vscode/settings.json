@@ -14,5 +14,4 @@
 	"javascript.preferences.quoteStyle": "double",
 	"typescript.preferences.quoteStyle": "double",
 	"editor.tabSize": 2,
-	"prettier.trailingComma": "all"
 }

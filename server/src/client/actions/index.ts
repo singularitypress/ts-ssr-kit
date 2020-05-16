@@ -6,7 +6,7 @@ import { ActionTypes } from "../../data";
 export const fetchUsers = () => async (dispatch: Dispatch<ActionGet>) => {
   const res = await axios.get("http://react-ssr-api.herokuapp.com/users");
 
-  let action: ActionGet = { type: ActionTypes.FETCH_USERS, payload: res };
+  const action: ActionGet = { type: ActionTypes.FETCH_USERS, payload: res };
 
   dispatch(action);
 };
