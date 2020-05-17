@@ -13,3 +13,7 @@ export interface Users {
 export interface State {
   users: Array<Users>;
 }
+
+declare global {
+  interface Window { INIT: any; }
+}

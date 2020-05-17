@@ -4,4 +4,4 @@ const Home = () => {
   return <div>{"I'm the GOAT home component"}</div>;
 };
 
-export default Home;
+export default { component: Home };

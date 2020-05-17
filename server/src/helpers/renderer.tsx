@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as serialize from "serialize-javascript";
 import { renderRoutes } from "react-router-config";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
@@ -16,6 +17,9 @@ export const renderer = (req: any, store: any) => {
       </StaticRouter>
     </Provider>,
   );
+  /**
+   * {2}
+   */
   return `
     <html>
       <head>
@@ -25,6 +29,7 @@ export const renderer = (req: any, store: any) => {
       </head>
       <body>
         <div id="root">${content}</div>
+        <script>window.INIT = ${serialize(store.getState())}</script>
         <script defer src="bundle.js"></script>
       </body>
     </html>

@@ -1,16 +1,15 @@
 import { RouteConfig } from "react-router-config";
-import Home from "./client/components/Home";
-import UsersList, { loadData } from "./client/components/UsersList";
+import Home from "./client/pages/Home";
+import UsersList from "./client/pages/UsersList";
 
 export default [
   {
+    ...Home,
     path: "/",
-    component: Home,
     exact: true,
   },
   {
+    ...UsersList,
     path: "/users",
-    component: UsersList,
-    loadData,
   },
 ] as RouteConfig[];
