@@ -5,6 +5,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import { renderRoutes } from "react-router-config";
 import { BrowserRouter } from "react-router-dom";
 
 import { createStore, applyMiddleware } from "redux";
@@ -37,7 +38,9 @@ const root = document.querySelector("#root");
 ReactDOM.hydrate(
   <Provider store={store}>
     <BrowserRouter>
-      <Routes />
+      <React.Fragment>
+        {renderRoutes(Routes)}
+      </React.Fragment>
     </BrowserRouter>
   </Provider>,
   root,

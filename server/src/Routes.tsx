@@ -1,13 +1,16 @@
-import * as React from "react";
-import { Route } from "react-router-dom";
+import { RouteConfig } from "react-router-config";
 import Home from "./client/components/Home";
-import UsersList from "./client/components/UsersList";
+import UsersList, { loadData } from "./client/components/UsersList";
 
-export default () => {
-  return (
-    <React.Fragment>
-      <Route exact path="/" component={Home} />
-      <Route path="/users" component={UsersList} />
-    </React.Fragment>
-  );
-};
+export default [
+  {
+    path: "/",
+    component: Home,
+    exact: true,
+  },
+  {
+    path: "/users",
+    component: UsersList,
+    loadData,
+  },
+] as RouteConfig[];
