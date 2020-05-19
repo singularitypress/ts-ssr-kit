@@ -1,17 +1,21 @@
-const { exec } = require("child_process");
+const { execSync } = require("child_process");
 
 const DEPENDENCIES = require("../../package.json");
 
 const NODE_COMMAND = "npm i --save";
+const NODE_COMMAND_DEV = "npm i --save-dev";
 
-const PACKAGES = () => {
-	let _dependenciesArr = [];
+const PACKAGES = (prop) => {
+  const _dependenciesArr = [];
 
-	for (let key in DEPENDENCIES.dependencies) {
-		_dependenciesArr.push(key);
-	}
+  for (const key in DEPENDENCIES[prop]) {
+    _dependenciesArr.push(key);
+  }
 
-	return `${_dependenciesArr.join("@latest ")}@latest`;
+  return `${_dependenciesArr.join("@latest ")}@latest`;
 };
 
-exec(`${NODE_COMMAND} ${PACKAGES()}`).stdout.pipe(process.stdout);
+execSync(`${NODE_COMMAND} ${PACKAGES("dependencies")}`, { stdio: "inherit" });
+execSync(`${NODE_COMMAND_DEV} ${PACKAGES("devDependencies")}`, {
+  stdio: "inherit",
+});
