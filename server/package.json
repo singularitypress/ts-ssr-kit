@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"init": "node scripts/init",
+		"init": "node scripts/clean && node scripts/init",
 		"dev": "npm-run-all --parallel dev:server dev:*",
 		"dev:server": "nodemon --watch ./build --exec \"node ./build/bundle.js\"",
 		"dev:build-server": "webpack --config webpack.server.js --watch",
@@ -52,8 +52,8 @@
 	},
 	"devDependencies": {
 		"@types/compression": "^1.7.0",
-		"@typescript-eslint/eslint-plugin": "^2.33.0",
-		"@typescript-eslint/parser": "^2.33.0",
+		"@typescript-eslint/eslint-plugin": "^2.34.0",
+		"@typescript-eslint/parser": "^2.34.0",
 		"eslint": "^7.0.0",
 		"eslint-config-standard": "^14.1.1",
 		"eslint-plugin-import": "^2.20.2",
