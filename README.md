@@ -28,3 +28,12 @@ Instead we'll have
 We're using .hydrate instead of .render because it's an SSR app and we want to update what the server is already rendering versus replacing the DOM node entirely. As per stackoverflow: If you call ReactDOM.hydrate() on a node that already has this server-rendered markup,   React will *preserve it and only attach event handlers*, allowing you to have a very   performant first-load experience.   Render may change your node if there is a difference between the initial DOM and the   current DOM. hydrate will only attach event handlers. https://stackoverflow.com/questions/46516395/whats-the-difference-between-hydrate-and-render-in-react-16 
 
 TL;DR, only useful for SSR React.
+
+## 4.
+Using `compression()` in our express `app` will compress what we deliver over express to the browser.
+
+## 5.
+Using `express.static("/public")` in our express `app` will allow us to access files in `/public` from the browser- such as JS, CSS, and images. The client-side JS/CSS bundles are here so this is necessary.
+
+## 6.
+We'll use this to make our rendering server as the main point of contact with any API services so that the API isn't hit by both the rendering server for the initial render, then again for the client-side render.
