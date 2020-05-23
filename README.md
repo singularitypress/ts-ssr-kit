@@ -21,8 +21,12 @@ The following: `<script>window.INIT = ${serialize(store.getState())}</script>` i
 
 Instead we'll have
 1. Redux store with requested data (server-side)
+    1. Redux action will make the API request server side
+    2. then in the server-side file that renders stringified HTML, we set the current server-side redux store into a window.INIT object so the data is immediately accessible client-side.
 2. Redux store with data that we got from the window.INIT object (client-side)
+    1. The default store for redux client-side (client.tsx `createStore`) sets the default state to window.INIT as set on the rendering server.
 3. Redux store with requested data (client-side)
+    1. The clientside redux action will make an API request itself.
 
 ## 3.
 We're using .hydrate instead of .render because it's an SSR app and we want to update what the server is already rendering versus replacing the DOM node entirely. As per stackoverflow: If you call ReactDOM.hydrate() on a node that already has this server-rendered markup,   React will *preserve it and only attach event handlers*, allowing you to have a very   performant first-load experience.   Render may change your node if there is a difference between the initial DOM and the   current DOM. hydrate will only attach event handlers. https://stackoverflow.com/questions/46516395/whats-the-difference-between-hydrate-and-render-in-react-16 
@@ -37,3 +41,20 @@ Using `express.static("/public")` in our express `app` will allow us to access f
 
 ## 6.
 We'll use the `proxy` middleware in express to forward API requests to the API service itself. Rather than have the client-side make seperate requests to express for our site, and another request to an API service, we'll make our API request to our express server and have *that* forward requests to the API service. The use of the `proxyOptions` params after the `proxyHost` string is needed for this particular API.
+
+## 7.
+The following and 7a are client-side (hence client.tsx). Here we're creating a custom axios instance (i.e. instead of axios.get and etc, you can do myAxios.get and etc). The purpose of this is to be able to set up custom configs for our instance of axios. Setting `baseURL` to `"/api"` for example will mean any routes we use in our custom axios instance will prepend with `"/api"`. It's `"/api"` because the request is going to our rendering server which will subsequently make its request to the actual API server.
+
+### 7a.
+If you use `thunk.withExtraArgument(...)`, you can pass in whatever you want into your action functions.
+
+### 7b.
+The async function gets automatically invoked by redux thunk. It doesn't *need* to be an async function, but it is because of how we're making an async request in it (axios). Redux Thunk can be boiled down to the following: https://github.com/reduxjs/redux-thunk/blob/master/src/index.js where you can see that you can pass in 3 items into action- a `dispatch`, a `getState`, and an `extraArgument`. We probably won't really need to use `getState`, but it's the second argument as per redux-thunk's action so...
+
+Also, to see what `api` is here, review footnote 7.
+
+## 8.
+Create a custom axios instance so that we can prepend requests we make with it (i.e. `axiosInstance.get`) with the `baseURL`. We're going to set it to the fully qualified API url since the only place that actually hits the API service directly should be the node (rendering) server.
+
+## 8a.
+Making a request to the API service from the node/rendering server requires... credentials. The user's cookie. Obviously this doesn't natively exist on the rendering server. What we can do though, is take the `req` object that contains the end-users Request information in `server.tsx` and pass it into `setStore` wherein we're defining our custom `axiosInstance` so we can take the cookie in `req` and set it inside `axiosInstance` via `headers.cookie`. We default the cookie value to empty string because this whole this could go bad if the value were to be undefined in the header.
