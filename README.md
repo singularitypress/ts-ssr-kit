@@ -1,4 +1,4 @@
-# ReadMe
+# How the sausage is made
 
 ## 1.
 `matchRoutes` will return an array of routes whose path that match `req.path`. Then we map over the routes that match whatever the user has requested and execute the `.loadData` function on that route if it exists. 
@@ -36,4 +36,4 @@ Using `compression()` in our express `app` will compress what we deliver over ex
 Using `express.static("/public")` in our express `app` will allow us to access files in `/public` from the browser- such as JS, CSS, and images. The client-side JS/CSS bundles are here so this is necessary.
 
 ## 6.
-We'll use this to make our rendering server as the main point of contact with any API services so that the API isn't hit by both the rendering server for the initial render, then again for the client-side render.
+We'll use the `proxy` middleware in express to forward API requests to the API service itself. Rather than have the client-side make seperate requests to express for our site, and another request to an API service, we'll make our API request to our express server and have *that* forward requests to the API service. The use of the `proxyOptions` params after the `proxyHost` string is needed for this particular API.

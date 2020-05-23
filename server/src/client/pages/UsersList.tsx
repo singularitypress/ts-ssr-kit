@@ -40,10 +40,12 @@ const mapStateToProps = (state: State) => {
   return { users: state.users };
 };
 
+// {1}
 const loadData = (store: Store) => {
   return store.dispatch(fetchUsers() as any);
 };
 
+// {1}
 export default {
   component: connect(mapStateToProps, { fetchUsers })(UsersList),
   loadData,
