@@ -1,5 +1,7 @@
 import { AxiosResponse } from "axios";
 
+export * from "./Base";
+
 export interface ActionGet {
   type: string;
   payload: AxiosResponse;

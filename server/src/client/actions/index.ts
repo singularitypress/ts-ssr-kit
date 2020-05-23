@@ -11,8 +11,6 @@ export const fetchUsers = () => async (
 ) => {
   const res = await api.get("/users");
 
-  console.log(res);
-
   const action: ActionGet = { type: ActionTypes.FETCH_USERS, payload: res };
 
   dispatch(action);

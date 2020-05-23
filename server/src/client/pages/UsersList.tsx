@@ -48,5 +48,6 @@ const loadData = (store: Store) => {
 // {1}
 export default {
   component: connect(mapStateToProps, { fetchUsers })(UsersList),
+  title: "Users List",
   loadData,
 };
