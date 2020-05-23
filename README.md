@@ -56,5 +56,5 @@ Also, to see what `api` is here, review footnote 7.
 ## 8.
 Create a custom axios instance so that we can prepend requests we make with it (i.e. `axiosInstance.get`) with the `baseURL`. We're going to set it to the fully qualified API url since the only place that actually hits the API service directly should be the node (rendering) server.
 
-## 8a.
+### 8a.
 Making a request to the API service from the node/rendering server requires... credentials. The user's cookie. Obviously this doesn't natively exist on the rendering server. What we can do though, is take the `req` object that contains the end-users Request information in `server.tsx` and pass it into `setStore` wherein we're defining our custom `axiosInstance` so we can take the cookie in `req` and set it inside `axiosInstance` via `headers.cookie`. We default the cookie value to empty string because this whole this could go bad if the value were to be undefined in the header.
