@@ -4,6 +4,7 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import axios from "axios";
 
 import { renderRoutes } from "react-router-config";
 import { BrowserRouter } from "react-router-dom";
@@ -15,10 +16,20 @@ import { Provider } from "react-redux";
 import Routes from "./Routes";
 import reducers from "./client/reducers";
 
+// {7}
+const axiosInstance = axios.create({
+  baseURL: "/api",
+});
+
 /**
  * {2}
+ * {7a}
  */
-const store = createStore(reducers, window.INIT, applyMiddleware(thunk));
+const store = createStore(
+  reducers,
+  window.INIT,
+  applyMiddleware(thunk.withExtraArgument(axiosInstance)),
+);
 
 const root = document.querySelector("#root");
 

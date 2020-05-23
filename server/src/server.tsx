@@ -15,13 +15,14 @@ app.use(express.static("public"));
 // {6}
 app.use("/api", proxy("http://react-ssr-api.herokuapp.com", {
   proxyReqOptDecorator: (opts) => {
-    opts.headers["x-forwarded-host"] = "localhost:4000";
+    opts.headers["x-forwarded-host"] = `localhost:${PORT}`;
     return opts;
   },
 }));
 
-app.get("*", (req: any, res: any) => {
-  const store = setStore();
+app.get("*", (req, res) => {
+  // {8a}
+  const store = setStore(req);
 
   // {1}
   const promises = matchRoutes(Routes, req.path).map((matchedRoute) => {
