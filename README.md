@@ -58,3 +58,6 @@ Create a custom axios instance so that we can prepend requests we make with it (
 
 ### 8a.
 Making a request to the API service from the node/rendering server requires... credentials. The user's cookie. Obviously this doesn't natively exist on the rendering server. What we can do though, is take the `req` object that contains the end-users Request information in `server.tsx` and pass it into `setStore` wherein we're defining our custom `axiosInstance` so we can take the cookie in `req` and set it inside `axiosInstance` via `headers.cookie`. We default the cookie value to empty string because this whole this could go bad if the value were to be undefined in the header.
+
+## 9.
+Each object in the `Routes.ts` array by default a `component`, `path`, `exact`, and `routes`. The `routes` property lets you have global components on the parent object and have the child objects on the `routes` property (array of routes) render inside the parent object's component. https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
