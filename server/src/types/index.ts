@@ -1,5 +1,7 @@
 import { AxiosResponse } from "axios";
 
+export * from "./Base";
+
 export interface ActionGet {
   type: string;
   payload: AxiosResponse;
@@ -12,4 +14,9 @@ export interface Users {
 
 export interface State {
   users: Array<Users>;
+  auth: any;
+}
+
+declare global {
+  interface Window { INIT: any; }
 }
