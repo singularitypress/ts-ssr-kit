@@ -32,7 +32,11 @@ module.exports = {
       },
     ],
     "arrow-parens": ["error", "always"],
-    "space-before-function-paren": ["error", "never"],
+    "space-before-function-paren": ["error", {
+      anonymous: "always",
+      named: "always",
+      asyncArrow: "always",
+    }],
     "@typescript-eslint/explicit-member-accessibility": 2,
   },
 };
