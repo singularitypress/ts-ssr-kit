@@ -1,7 +1,7 @@
 import * as React from "react";
 
-const Home = () => {
+const _Home = () => {
   return <div>{"I'm the GOAT home component"}</div>;
 };
 
-export default { component: Home, title: "Home" };
+export const Home = { component: _Home, title: "Home" };

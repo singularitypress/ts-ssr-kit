@@ -67,3 +67,6 @@ Hit the /current_user route on the API, piggybacking off of what we did in #7, 7
 
 ## 11.
 Auth is the reducer that's going to add the authenticated current user to the redux state. Note that the `state` of this reducer is set to `null` by default and consequently is set to a type of `any` because we don't want to have an actual default user value for data that needs to be authenticated. We're using a switch-case here vs a ternary operator (like `users.ts`) for the same reason. What we want to do is return `null` if the action type isn't `FETCH_CURRENT_USER` in the first place (i.e. the default in the switch-case), but also a `false` if the user isn't authenticated as the `action.payload.data` would be otherwise `undefined`.
+
+## 12.
+We're gonna add `loadData` to the Base component that all current pages are loaded through since we want to have the authentication/current user stuff happen on every page. To know how `loadData` stuff works, review #1, and to know how the `Base` stuff works check #9.

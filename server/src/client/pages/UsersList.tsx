@@ -9,7 +9,7 @@ interface props {
   fetchUsers: Function;
 }
 
-class UsersList extends React.Component<props> {
+class _UsersList extends React.Component<props> {
   public constructor (props: props) {
     super(props);
 
@@ -46,8 +46,8 @@ const loadData = (store: Store) => {
 };
 
 // {1}
-export default {
-  component: connect(mapStateToProps, { fetchUsers })(UsersList),
+export const UsersList = {
+  component: connect(mapStateToProps, { fetchUsers })(_UsersList),
   title: "Users List",
   loadData,
 };

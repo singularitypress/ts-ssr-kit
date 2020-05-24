@@ -1,7 +1,6 @@
 import { RouteConfig } from "react-router-config";
 import { Base } from "./client/template";
-import Home from "./client/pages/Home";
-import UsersList from "./client/pages/UsersList";
+import { Home, UsersList } from "./client/pages";
 
 // {9}
 export default [
