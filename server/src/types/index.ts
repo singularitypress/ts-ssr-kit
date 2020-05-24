@@ -14,6 +14,7 @@ export interface Users {
 
 export interface State {
   users: Array<Users>;
+  auth: any;
 }
 
 declare global {
