@@ -61,3 +61,9 @@ Making a request to the API service from the node/rendering server requires... c
 
 ## 9.
 Each object in the `Routes.ts` array by default a `component`, `path`, `exact`, and `routes`. The `routes` property lets you have global components on the parent object and have the child objects on the `routes` property (array of routes) render inside the parent object's component. https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
+
+## 10.
+Hit the /current_user route on the API, piggybacking off of what we did in #7, 7a, 7b.
+
+## 11.
+Auth is the reducer that's going to add the authenticated current user to the redux state. Note that the `state` of this reducer is set to `null` by default and consequently is set to a type of `any` because we don't want to have an actual default user value for data that needs to be authenticated. We're using a switch-case here vs a ternary operator (like `users.ts`) for the same reason. What we want to do is return `null` if the action type isn't `FETCH_CURRENT_USER` in the first place (i.e. the default in the switch-case), but also a `false` if the user isn't authenticated as the `action.payload.data` would be otherwise `undefined`.
