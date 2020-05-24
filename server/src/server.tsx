@@ -4,6 +4,7 @@ import * as compression from "compression";
 import { matchRoutes } from "react-router-config";
 import { renderer, setStore } from "./helpers";
 import Routes from "./Routes";
+import { StaticContext } from "./types";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -30,8 +31,19 @@ app.get("*", (req, res) => {
     return route.loadData ? route.loadData(store) : null;
   });
 
+  // {14}
+  const serverContext: StaticContext = {};
+
+  // {17}
+  if (serverContext.notFound) {
+    res.status(404);
+  }
+
+  // {15}
+  const content = renderer(req, store, serverContext);
+
   Promise.all(promises).then(() => {
-    res.send(renderer(req, store));
+    res.send(content);
   });
 });
 

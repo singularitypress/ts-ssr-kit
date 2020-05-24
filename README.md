@@ -1,5 +1,9 @@
 # How the sausage is made
 
+## Basics.
+
+There's two apps in this repo, the client-side react app, and a server-side react app; their entry points are `client.tsx` and `server.tsx` respectively. We essentially take our react app and pass it into `client.tsx` and `server.tsx` so that each of our webpack configs can build a different bundle file. The client one would run on the browser, the server one would run in node and express would take the stringified app and send it to the browser.
+
 ## 1.
 `matchRoutes` will return an array of routes whose path that match `req.path`. Then we map over the routes that match whatever the user has requested and execute the `.loadData` function on that route if it exists. 
 
@@ -73,3 +77,15 @@ We're gonna add `loadData` to the Base component that all current pages are load
 
 ## 13.
 If React Router can't find a matching route, it'll fall back to this since it doesn't have a `path` set.
+
+## 14.
+We're going to create a variable called `serverContext` in `server.tsx`, and pass that into `renderer` (which exists to take our react app and turn it into a string for our server to send to the browser as HTML) in order to pass in any `req`/`res` information from express into the react app (i.e. status code). The `context` prop on `StaticRouter` makes whatever we pass in there available to all route components in their `props` as `staticContext` (effectively `props.staticContext`). For emphasis, this is all static server-side only stuff.
+
+## 15.
+The `renderer` function from `renderer.tsx` contains our JSX transformed into a string to be returned from express, thus assigned to the variable `content`.
+
+## 16.
+As per #13, this page is only reached when none of the routes match, thus we set `notFound` on the `staticContext` to `true`.
+
+## 17.
+When `staticContext` is set to `true` in #16, this change to `staticContext` (or as we know the variable in `server.tsx` as `serverContext`) gets propagated everywhere server-side, thus when we're on the `NotFoundPage`, `serverContext.notFound` is `true`, and we can send `404` (and obviously right after, the content which in this case is `NotFoundPage`).

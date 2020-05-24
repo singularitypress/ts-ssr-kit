@@ -1,6 +1,8 @@
 import * as React from "react";
+import { NotFoundPageProps } from "../../types";
 
-const _NotFoundPage = () => {
+const _NotFoundPage = ({ staticContext = {} }: NotFoundPageProps) => {
+  staticContext.notFound = true; // {16}
   return <h1>Oops, page not found</h1>;
 };
 

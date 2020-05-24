@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 
 export * from "./Base";
+export * from "./pages";
 
 export interface ActionGet {
   type: string;
@@ -15,6 +16,10 @@ export interface Users {
 export interface State {
   users: Array<Users>;
   auth: any;
+}
+
+export interface StaticContext {
+  notFound?: boolean;
 }
 
 declare global {

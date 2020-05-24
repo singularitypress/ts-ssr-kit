@@ -7,10 +7,11 @@ import { Provider } from "react-redux";
 
 import Routes from "../Routes";
 
-export const renderer = (req: any, store: any) => {
+// {14}
+export const renderer = (req: any, store: any, serverContext: any) => {
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={req.path} context={{}}>
+      <StaticRouter location={req.path} context={serverContext}>
         <React.Fragment>
           {renderRoutes(Routes)}
         </React.Fragment>
