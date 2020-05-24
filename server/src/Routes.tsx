@@ -1,6 +1,6 @@
 import { RouteConfig } from "react-router-config";
 import { Base } from "./client/template";
-import { Home, UsersList } from "./client/pages";
+import { Home, UsersList, NotFoundPage } from "./client/pages";
 
 // {9}
 export default [
@@ -15,6 +15,9 @@ export default [
       {
         ...UsersList,
         path: "/users",
+      },
+      {
+        ...NotFoundPage, // {13}
       },
     ],
   },

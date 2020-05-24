@@ -70,3 +70,6 @@ Auth is the reducer that's going to add the authenticated current user to the re
 
 ## 12.
 We're gonna add `loadData` to the Base component that all current pages are loaded through since we want to have the authentication/current user stuff happen on every page. To know how `loadData` stuff works, review #1, and to know how the `Base` stuff works check #9.
+
+## 13.
+If React Router can't find a matching route, it'll fall back to this since it doesn't have a `path` set.
