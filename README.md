@@ -15,7 +15,7 @@ The `.loadData` function is defined and exported from select components if they 
 * we have a `return`, and since `loadData` is for loading/requesting data, the value is a `promise`.
 * thus we... have an array of promises
 * `Promises.all` is a native js function where you pass in an array of promises and it'll be "resolved" once all promises in the array are resolved.
-* we put `res.send` in the `.then` of `Promise.all` so that we only send data back to the user once the `.loadData` functions for the routes are resolved. We basically need to run the Redux Action to do a data request for components that need it before any JSX enters the picture.
+* we put `res.send` in the `.then` of `Promise.all` so that we only send data back to the user once the `.loadData` functions for the routes are resolved. We basically need to run the Redux Action to do a data request for components that need it before any JSX enters the picture. `renderer` will actually render the HTML, so obviously that should be place in the `.then` since we only want it to run after all promises are resolved.
 
 ## 2.
 The following: `<script>window.INIT = ${serialize(store.getState())}</script>` is designed to take the redux state that exists server-side and have it added to the Window object client-side so that we don't go from:
