@@ -4,8 +4,6 @@ import { State } from "../../types";
 import { connect } from "react-redux";
 
 const _Header = (props: { auth: any }) => {
-  console.log("My auth status: ", props.auth);
-
   const authBtn = props.auth ? (<a href="/api/logout">Logout</a>) : (<a href="/api/auth/google">Login</a>);
   return (
     <nav>
