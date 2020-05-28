@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { IAdmin } from "./pages";
 
 export * from "./Base";
 export * from "./pages";
@@ -14,6 +15,7 @@ export interface Users {
 }
 
 export interface State {
+  admins: IAdmin[]
   users: Array<Users>;
   auth: any;
 }
