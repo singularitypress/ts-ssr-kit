@@ -17,6 +17,9 @@ The `.loadData` function is defined and exported from select components if they 
 * `Promises.all` is a native js function where you pass in an array of promises and it'll be "resolved" once all promises in the array are resolved.
 * we put `res.send` in the `.then` of `Promise.all` so that we only send data back to the user once the `.loadData` functions for the routes are resolved. We basically need to run the Redux Action to do a data request for components that need it before any JSX enters the picture. `renderer` will actually render the HTML, so obviously that should be place in the `.then` since we only want it to run after all promises are resolved.
 
+### 1a.
+As we can see in #1, the `Promises` array contains an... array of promises; we can see that the map function that's being run on `matchRoutes` has a ternary that eithe returns `loadData` (a promise) or `null`. To both get rid of the instances of `null` from the array, and to ensure that none of the promises in the array are rejected, we're going to run a `.map` again and if a promise exist (i.e. not `null`) return a new promise that can only be resolved, including in its `catch`.
+
 ## 2.
 The following: `<script>window.INIT = ${serialize(store.getState())}</script>` is designed to take the redux state that exists server-side and have it added to the Window object client-side so that we don't go from:
 1. Redux store with requested data (server-side)
@@ -89,3 +92,9 @@ As per #13, this page is only reached when none of the routes match, thus we set
 
 ## 17.
 When `staticContext` is set to `true` in #16, this change to `staticContext` (or as we know the variable in `server.tsx` as `serverContext`) gets propagated everywhere server-side, thus when we're on the `NotFoundPage`, `serverContext.notFound` is `true`, and we can send `404` (and obviously right after, the content which in this case is `NotFoundPage`).
+
+## 18.
+Lets just put all of our authentication checking and handling (in case users aren't authenticated) into this higher order component (check react docs for what this is), it'll check to see if we're authenticated and return the component that's passed in if we are.
+
+### 18a.
+Using react router's `<Redirect to="" />` isn't meaningful on the server. So we have to check the context to see if there's a `url` property and thus do an express redirect.
