@@ -1,8 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { fetchAdmins } from "./../actions";
-import { State, IAdminsListProps } from "../../types";
 import { Store } from "redux";
+
+import { fetchAdmins } from "../actions";
+import { State, IAdminsListProps } from "../../types";
+import { RequireAuth } from "../components/higher-order";
 
 class _AdminsList extends React.Component<IAdminsListProps> {
   public constructor (props: IAdminsListProps) {
@@ -37,7 +39,7 @@ const mapStateToProps = (state: State) => {
 
 // {1}
 export const AdminsList = {
-  component: connect(mapStateToProps, { fetchAdmins })(_AdminsList),
+  component: connect(mapStateToProps, { fetchAdmins })(RequireAuth(_AdminsList)), // {18}
   title: "Admins List",
   loadData: (store: Store) => {
     return store.dispatch(fetchAdmins() as any);

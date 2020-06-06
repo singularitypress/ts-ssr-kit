@@ -26,16 +26,30 @@ app.get("*", (req, res) => {
   const store = setStore(req);
 
   // {1}
-  const promises = matchRoutes(Routes, req.path).map((matchedRoute) => {
-    const { route } = matchedRoute;
-    return route.loadData ? route.loadData(store) : null;
-  });
+  const promises =
+    matchRoutes(Routes, req.path)
+      .map((matchedRoute) => {
+        const { route } = matchedRoute;
+        return route.loadData ? route.loadData(store) : null;
+      })
+      .map((promise) => { // {1a}
+        if (promise) {
+          return new Promise((resolve, reject) => {
+            promise.then(resolve).catch(resolve);
+          });
+        }
+      });
   Promise.all(promises).then(() => {
     // {14}
     const serverContext: StaticContext = {};
 
     // {15}
     const content = renderer(req, store, serverContext);
+
+    // {18a}
+    if (serverContext.url) {
+      return res.redirect(301, serverContext.url);
+    }
 
     // {17}
     if (serverContext.notFound) {
