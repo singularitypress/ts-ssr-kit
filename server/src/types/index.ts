@@ -1,6 +1,8 @@
 import { AxiosResponse } from "axios";
+import { IAdmin } from "./pages";
 
 export * from "./Base";
+export * from "./pages";
 
 export interface ActionGet {
   type: string;
@@ -13,10 +15,20 @@ export interface Users {
 }
 
 export interface State {
+  admins: IAdmin[];
   users: Array<Users>;
   auth: any;
 }
 
+export interface StaticContext {
+  notFound?: boolean;
+  action?: string;
+  location?: { pathname: string; search: string; hash: string; state: any };
+  url?: string;
+}
+
 declare global {
-  interface Window { INIT: any; }
+  interface Window {
+    INIT: any;
+  }
 }

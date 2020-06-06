@@ -3,16 +3,15 @@ import { ActionGet } from "../../types";
 import { Dispatch } from "redux";
 import { ActionTypes } from "../../data";
 
-// {7b}
-export const fetchUsers = () => async (
+// {10}
+export const fetchAdmins = () => async (
   dispatch: Dispatch<ActionGet>,
   getState: any,
   api: AxiosInstance,
 ) => {
-  const res = await api.get("/users");
-
+  const res = await api.get("/admins");
   dispatch({
-    type: ActionTypes.FETCH_USERS,
+    type: ActionTypes.FETCH_ADMINS,
     payload: res,
   });
 };
