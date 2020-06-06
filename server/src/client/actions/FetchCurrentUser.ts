@@ -10,10 +10,8 @@ export const fetchCurrentUser = () => async (
   api: AxiosInstance,
 ) => {
   const res = await api.get("/current_user");
-  const action: ActionGet = {
+  dispatch({
     type: ActionTypes.FETCH_CURRENT_USER,
     payload: res,
-  };
-
-  dispatch(action);
+  });
 };

@@ -1,5 +1,9 @@
 # How the sausage is made
 
+## Basics.
+
+There's two apps in this repo, the client-side react app, and a server-side react app; their entry points are `client.tsx` and `server.tsx` respectively. We essentially take our react app and pass it into `client.tsx` and `server.tsx` so that each of our webpack configs can build a different bundle file. The client one would run on the browser, the server one would run in node and express would take the stringified app and send it to the browser.
+
 ## 1.
 `matchRoutes` will return an array of routes whose path that match `req.path`. Then we map over the routes that match whatever the user has requested and execute the `.loadData` function on that route if it exists. 
 
@@ -11,7 +15,10 @@ The `.loadData` function is defined and exported from select components if they 
 * we have a `return`, and since `loadData` is for loading/requesting data, the value is a `promise`.
 * thus we... have an array of promises
 * `Promises.all` is a native js function where you pass in an array of promises and it'll be "resolved" once all promises in the array are resolved.
-* we put `res.send` in the `.then` of `Promise.all` so that we only send data back to the user once the `.loadData` functions for the routes are resolved. We basically need to run the Redux Action to do a data request for components that need it before any JSX enters the picture.
+* we put `res.send` in the `.then` of `Promise.all` so that we only send data back to the user once the `.loadData` functions for the routes are resolved. We basically need to run the Redux Action to do a data request for components that need it before any JSX enters the picture. `renderer` will actually render the HTML, so obviously that should be place in the `.then` since we only want it to run after all promises are resolved.
+
+### 1a.
+As we can see in #1, the `Promises` array contains an... array of promises; we can see that the map function that's being run on `matchRoutes` has a ternary that eithe returns `loadData` (a promise) or `null`. To both get rid of the instances of `null` from the array, and to ensure that none of the promises in the array are rejected, we're going to run a `.map` again and if a promise exist (i.e. not `null`) return a new promise that can only be resolved, including in its `catch`.
 
 ## 2.
 The following: `<script>window.INIT = ${serialize(store.getState())}</script>` is designed to take the redux state that exists server-side and have it added to the Window object client-side so that we don't go from:
@@ -70,3 +77,24 @@ Auth is the reducer that's going to add the authenticated current user to the re
 
 ## 12.
 We're gonna add `loadData` to the Base component that all current pages are loaded through since we want to have the authentication/current user stuff happen on every page. To know how `loadData` stuff works, review #1, and to know how the `Base` stuff works check #9.
+
+## 13.
+If React Router can't find a matching route, it'll fall back to this since it doesn't have a `path` set.
+
+## 14.
+We're going to create a variable called `serverContext` in `server.tsx`, and pass that into `renderer` (which exists to take our react app and turn it into a string for our server to send to the browser as HTML) in order to pass in any `req`/`res` information from express into the react app (i.e. status code). The `context` prop on `StaticRouter` makes whatever we pass in there available to all route components in their `props` as `staticContext` (effectively `props.staticContext`). For emphasis, this is all static server-side only stuff.
+
+## 15.
+The `renderer` function from `renderer.tsx` contains our JSX transformed into a string to be returned from express, thus assigned to the variable `content`.
+
+## 16.
+As per #13, this page is only reached when none of the routes match, thus we set `notFound` on the `staticContext` to `true`.
+
+## 17.
+When `staticContext` is set to `true` in #16, this change to `staticContext` (or as we know the variable in `server.tsx` as `serverContext`) gets propagated everywhere server-side, thus when we're on the `NotFoundPage`, `serverContext.notFound` is `true`, and we can send `404` (and obviously right after, the content which in this case is `NotFoundPage`).
+
+## 18.
+Lets just put all of our authentication checking and handling (in case users aren't authenticated) into this higher order component (check react docs for what this is), it'll check to see if we're authenticated and return the component that's passed in if we are.
+
+### 18a.
+Using react router's `<Redirect to="" />` isn't meaningful on the server. So we have to check the context to see if there's a `url` property and thus do an express redirect.
