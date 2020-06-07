@@ -4,6 +4,7 @@ import { renderRoutes } from "react-router-config";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { Helmet } from "react-helmet";
 
 import Routes from "../Routes";
 
@@ -18,16 +19,17 @@ export const renderer = (req: any, store: any, serverContext: any) => {
       </StaticRouter>
     </Provider>,
   );
-  /**
-   * {2}
-   */
+
+  const helmet = Helmet.renderStatic();
+
+  // {2}
   return `
     <html>
       <head>
         <meta charset="utf-8">
         <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>TypeScript SSR Kit</title>
+        ${helmet.title.toString()}
         <meta name="description" content=""/>
         <meta name="robots" content="index,follow"/>
         <meta name="theme-color" content="#FFF"/>
