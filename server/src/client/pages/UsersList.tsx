@@ -1,8 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { Store } from "redux";
+import { Helmet } from "react-helmet";
+
 import { fetchUsers } from "./../actions";
 import { State, Users } from "../../types";
-import { Store } from "redux";
 
 interface props {
   users: Array<Users>;
@@ -26,12 +28,23 @@ class _UsersList extends React.Component<props> {
     });
   }
 
+  public head () {
+    return (
+      <Helmet>
+        <title>{`${this.props.users.length} Users`}</title>
+      </Helmet>
+    );
+  }
+
   public render () {
     return (
-      <div>
-        <p>{"Here's a big list of users"}</p>
-        <ul>{this.renderusers()}</ul>
-      </div>
+      <React.Fragment>
+        {this.head()}
+        <div>
+          <p>{"Here's a big list of users"}</p>
+          <ul>{this.renderusers()}</ul>
+        </div>
+      </React.Fragment>
     );
   }
 }
@@ -48,6 +61,5 @@ const loadData = (store: Store) => {
 // {1}
 export const UsersList = {
   component: connect(mapStateToProps, { fetchUsers })(_UsersList),
-  title: "Users List",
   loadData,
 };
