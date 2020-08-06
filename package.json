@@ -10,11 +10,11 @@
 		"init": "node scripts/clean && node scripts/init",
 		"dev": "npm-run-all --parallel dev:server dev:*",
 		"dev:server": "nodemon --watch ./build --exec \"node ./build/bundle.js\"",
-		"dev:build-server": "webpack --config webpack.server.js --watch",
-		"dev:build-client": "webpack --config webpack.client.js --watch",
+		"dev:build-server": "webpack --config webpack.server.js --mode development --watch",
+		"dev:build-client": "webpack --config webpack.client.js --mode development --watch",
 		"start": "node build/bundle.js",
-		"build": "webpack --config webpack.client.js && webpack --config webpack.server.js",
-		"build:start": "webpack --config webpack.client.js && webpack --config webpack.server.js && node build/bundle.js"
+		"build": "webpack --config webpack.client.js --mode production && webpack --config webpack.server.js --mode production",
+		"build:start": "npm run build && npm run start"
 	},
 	"author": "",
 	"license": "ISC",
