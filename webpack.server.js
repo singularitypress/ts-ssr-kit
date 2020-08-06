@@ -11,7 +11,6 @@ const NAME = "bundle";
 var config = () => {
 	return {
 		target: "node",
-		mode: "production",
 		entry: [`${APP_DIR}/server.tsx`, `${STYLE_DIR}/index.scss`],
 		resolve: {
 			extensions: [".ts", ".js", ".json", ".tsx", ".jsx"],

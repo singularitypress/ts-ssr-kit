@@ -9,7 +9,6 @@ const NAME = "bundle";
 
 var config = () => {
   return {
-    mode: "development",
     entry: [`${APP_DIR}/client.tsx`, `${STYLE_DIR}/index.scss`],
     resolve: {
       extensions: [".ts", ".js", ".json", ".tsx", ".jsx"],
