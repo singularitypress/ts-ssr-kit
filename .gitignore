@@ -3,3 +3,6 @@ sample.zip
 sample
 server/build
 server/public
+node_modules
+build
+public
