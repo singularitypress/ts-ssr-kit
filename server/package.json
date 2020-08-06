@@ -1,6 +1,9 @@
 {
 	"name": "ts-ssr-kit",
 	"version": "1.0.0",
+	"engines": {
+    "node": "14.x"
+  },
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -8,7 +11,10 @@
 		"dev": "npm-run-all --parallel dev:server dev:*",
 		"dev:server": "nodemon --watch ./build --exec \"node ./build/bundle.js\"",
 		"dev:build-server": "webpack --config webpack.server.js --watch",
-		"dev:build-client": "webpack --config webpack.client.js --watch"
+		"dev:build-client": "webpack --config webpack.client.js --watch",
+		"start": "node build/bundle.js",
+    "build": "webpack --config webpack.client.js & webpack --config webpack.server.js",
+    "build:start": "webpack --config webpack.client.js && webpack --config webpack.server.js && node build/bundle.js"
 	},
 	"author": "",
 	"license": "ISC",
