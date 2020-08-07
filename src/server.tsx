@@ -21,14 +21,6 @@ app.use("/api", proxy("http://react-ssr-api.herokuapp.com", {
   },
 }));
 
-app.get("/.well-known/acme-challenge/LB6wm6ZPDjpBy6adbS16zSxkeK7-YWMobsrYmGQ8ahQ", (req, res) => {
-  res.send("LB6wm6ZPDjpBy6adbS16zSxkeK7-YWMobsrYmGQ8ahQ.oKVbU2fp1pfCjTcSAU8bJ7efmBSwbbiX2ZXUOwkHlWE");
-});
-
-app.get("/.well-known/acme-challenge/K3Go2IbVIgJ3XrJsy_yzIKq2EF_SNkLLgVW3WjDU_Z4", (req, res) => {
-  res.send("K3Go2IbVIgJ3XrJsy_yzIKq2EF_SNkLLgVW3WjDU_Z4.oKVbU2fp1pfCjTcSAU8bJ7efmBSwbbiX2ZXUOwkHlWE")
-});
-
 app.get("*", (req, res) => {
   // {8a}
   const store = setStore(req);
