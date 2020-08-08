@@ -18,6 +18,9 @@ const _Header = (props: { auth: any }) => {
         <li className={setActiveClass("/admins")}>
           <Link to="/admins">Admins</Link>
         </li>
+        <li className={setActiveClass("/theme")}>
+          <Link to="/theme">Theme</Link>
+        </li>
         <li>
           {authBtn}
         </li>
