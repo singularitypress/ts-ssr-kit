@@ -1,0 +1,7 @@
+body {
+  @include dp-bg("00");
+
+  @media (prefers-color-scheme: dark) {
+    color: $white;
+  }
+}
