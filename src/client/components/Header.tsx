@@ -1,21 +1,25 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { State } from "../../types";
 import { connect } from "react-redux";
 
 const _Header = (props: { auth: any }) => {
   const authBtn = props.auth ? (<a href="/api/logout">Logout</a>) : (<a href="/api/auth/google">Login</a>);
+  const setActiveClass = (route: string) => useLocation().pathname === route ? "active" : "";
   return (
     <nav>
-      <ul>
-        <li>
+      <ul className="nav">
+        <li className={setActiveClass("/")}>
           <Link to="/">Home</Link>
         </li>
-        <li>
+        <li className={setActiveClass("/users")}>
           <Link to="/users">Users</Link>
         </li>
-        <li>
+        <li className={setActiveClass("/admins")}>
           <Link to="/admins">Admins</Link>
+        </li>
+        <li className={setActiveClass("/theme")}>
+          <Link to="/theme">Theme</Link>
         </li>
         <li>
           {authBtn}
