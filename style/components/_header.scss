@@ -16,11 +16,17 @@ nav {
   }
 }
 
-@include media-breakpoint-down("sm") {
+@include media-breakpoint-down("lg") {
   nav {
     position: fixed;
     width: 100%;
     bottom: 0px;
     height: 75px;
+  }
+}
+
+@include media-breakpoint-up("lg") {
+  nav {
+    height: 50px;
   }
 }
