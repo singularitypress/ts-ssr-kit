@@ -1,0 +1,10 @@
+.hero {
+  overflow: hidden;
+  height: 57vw;
+
+  video {
+    position: absolute;
+    z-index: -1;
+    height: 57vw;
+  }
+}

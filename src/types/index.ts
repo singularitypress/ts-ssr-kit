@@ -3,6 +3,7 @@ import { IAdmin } from "./pages";
 
 export * from "./Base";
 export * from "./pages";
+export * from "./components";
 
 export interface ActionGet {
   type: string;

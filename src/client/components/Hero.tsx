@@ -1,10 +1,20 @@
 import * as React from "react";
+import { Container } from "./atomic";
+import { IHeroProps } from "../../types";
 
-export const Hero = () => {
-  const gridClassName = "w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4";
+export const Hero = (props: IHeroProps) => {
+  const renderVideo = () => {
+    return (
+      <video loop autoPlay src={props.video} />
+    );
+  };
+
   return (
-    <div className="">
-
+    <div className="hero flex justify-center items-center">
+      <Container>
+        {props.children}
+      </Container>
+      {renderVideo()}
     </div>
   );
 };

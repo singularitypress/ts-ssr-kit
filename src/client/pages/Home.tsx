@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
+import { Hero } from "../components";
 
 const _Home = () => {
   return (
@@ -7,7 +8,9 @@ const _Home = () => {
       <Helmet>
         <title>Home</title>
       </Helmet>
-      <div>{"I'm the GOAT home component"}</div>
+      <Hero video="https://i.imgur.com/3ble7us.mp4">
+        <h1 className="prose prose-headline text-center">Welcome Home</h1>
+      </Hero>
     </React.Fragment>
   );
 };
