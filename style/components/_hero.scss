@@ -1,10 +1,15 @@
 .hero {
   overflow: hidden;
-  height: 57vw;
+  position: relative;
 
   video {
     position: absolute;
     z-index: -1;
-    height: 57vw;
+    top: 0;
+    max-width: none;
+
+   @include media-breakpoint-up("xl") {
+      width: 100vw;
+    }
   }
 }

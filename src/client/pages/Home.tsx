@@ -8,7 +8,7 @@ const _Home = () => {
       <Helmet>
         <title>Home</title>
       </Helmet>
-      <Hero video="https://i.imgur.com/3ble7us.mp4">
+      <Hero video={{ src: "https://i.imgur.com/3ble7us.mp4" }} height="100vh">
         <h1 className="prose prose-headline text-center">Welcome Home</h1>
       </Hero>
     </React.Fragment>
