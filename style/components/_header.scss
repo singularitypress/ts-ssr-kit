@@ -1,6 +1,9 @@
 nav {
+  @include dp-bg("08");
+  @include dp-shadow("08");
   display: flex;
   justify-content: center;
+  align-items: center;
   .nav {
     display: inline-flex;
 
@@ -10,5 +13,20 @@ nav {
         margin-left: 0px;
       }
     }
+  }
+}
+
+@include media-breakpoint-down("lg") {
+  nav {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    height: 75px;
+  }
+}
+
+@include media-breakpoint-up("lg") {
+  nav {
+    height: 50px;
   }
 }

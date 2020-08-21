@@ -4,8 +4,13 @@ import { State } from "../../types";
 import { connect } from "react-redux";
 
 const _Header = (props: { auth: any }) => {
-  const authBtn = props.auth ? (<a href="/api/logout">Logout</a>) : (<a href="/api/auth/google">Login</a>);
-  const setActiveClass = (route: string) => useLocation().pathname === route ? "active" : "";
+  const authBtn = props.auth ? (
+    <a href="/api/logout">Logout</a>
+  ) : (
+    <a href="/api/auth/google">Login</a>
+  );
+  const setActiveClass = (route: string) =>
+    useLocation().pathname === route ? "active" : "";
   return (
     <nav>
       <ul className="nav">
@@ -21,9 +26,7 @@ const _Header = (props: { auth: any }) => {
         <li className={setActiveClass("/theme")}>
           <Link to="/theme">Theme</Link>
         </li>
-        <li>
-          {authBtn}
-        </li>
+        <li>{authBtn}</li>
       </ul>
     </nav>
   );
