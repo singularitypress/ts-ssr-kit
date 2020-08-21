@@ -34,7 +34,7 @@
 		"redux": "^4.0.5",
 		"redux-thunk": "^2.3.0",
 		"serialize-javascript": "^4.0.0",
-		"tailwindcss": "^1.7.2"
+		"tailwindcss": "^1.7.3"
 	},
 	"devDependencies": {
 		"@types/compression": "^1.7.0",
@@ -68,7 +68,7 @@
 		"sass-loader": "^9.0.3",
 		"source-map-loader": "^1.0.2",
 		"style-loader": "^1.2.1",
-		"typescript": "^3.9.7",
+		"typescript": "^4.0.2",
 		"webpack": "^4.44.1",
 		"webpack-cli": "^3.3.12",
 		"webpack-node-externals": "^2.5.1"
