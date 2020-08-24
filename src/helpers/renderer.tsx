@@ -56,7 +56,7 @@ export const renderer = (req: any, store: any, serverContext: any) => {
       <body>
         <div id="root">${content}</div>
         <script>window.INIT = ${serialize(store.getState())}</script>
-        <script defer src="bundle.js"></script>
+        <script async defer src="bundle.js"></script>
       </body>
     </html>
   `;
