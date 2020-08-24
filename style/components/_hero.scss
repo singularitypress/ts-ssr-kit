@@ -9,7 +9,9 @@
     max-width: none;
 
    @include media-breakpoint-up("xl") {
-      width: 100vw;
+      @media (min-aspect-ratio: 16/9) {
+        width: 100vw;
+      }
     }
   }
 }
