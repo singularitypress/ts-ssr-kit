@@ -1,0 +1,17 @@
+.hero {
+  overflow: hidden;
+  position: relative;
+
+  video {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    max-width: none;
+
+   @include media-breakpoint-up("xl") {
+      @media (min-aspect-ratio: 16/9) {
+        width: 100vw;
+      }
+    }
+  }
+}

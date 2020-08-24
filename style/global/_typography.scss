@@ -1,0 +1,10 @@
+.prose {
+
+  @media (prefers-color-scheme: dark) {
+    color: $white;
+  }
+
+  &-headline {
+    font-size: 36px;
+  }
+}
