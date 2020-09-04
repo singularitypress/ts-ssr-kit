@@ -7,11 +7,22 @@ nav {
   z-index: 999;
   .nav {
     display: inline-flex;
-
+    height: 100%;
+    align-items: center;
     li {
       margin-left: 16px;
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
       &:first-child {
         margin-left: 0px;
+      }
+
+      &.active {
+        border-bottom: 2px solid $white;
+        color: $white;
+        font-weight: 500;
       }
     }
   }
@@ -29,5 +40,6 @@ nav {
 @include media-breakpoint-up("lg") {
   nav {
     height: 50px;
+    font-weight: 300;
   }
 }
