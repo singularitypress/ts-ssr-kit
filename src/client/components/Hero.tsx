@@ -3,9 +3,11 @@ import { Container } from "./atomic";
 import { IHeroProps } from "../../types";
 
 export const Hero = (props: IHeroProps) => {
+  const { video, height, style } = props;
+
   const renderVideo = () => {
     return (
-      <video loop autoPlay src={props.video.src} style={{ minHeight: props.height }} />
+      <video loop autoPlay src={video.src} style={{ minHeight: height, ...style }} />
     );
   };
 
@@ -16,7 +18,7 @@ export const Hero = (props: IHeroProps) => {
   };
 
   return (
-    <div className="hero flex justify-center items-center" style={{ height: props.height }}>
+    <div className="hero flex justify-center items-center" style={{ height: height }}>
       <Container>
         {props.children}
       </Container>

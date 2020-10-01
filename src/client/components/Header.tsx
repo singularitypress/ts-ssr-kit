@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { State } from "../../types";
+import { State, IHeader } from "../../types";
 import { connect } from "react-redux";
 
-const _Header = (props: { auth: any }) => {
+const _Header = (props: IHeader) => {
   const authBtn = props.auth ? (
     <a href="/api/logout">Logout</a>
   ) : (

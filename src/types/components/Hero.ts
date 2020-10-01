@@ -4,4 +4,7 @@ export interface IHeroProps {
   video?: {
     src: string;
   };
+  style?: {
+    filter?: string;
+  }
 }
