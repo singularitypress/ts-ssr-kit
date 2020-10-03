@@ -10,7 +10,7 @@ const _Charts = () => {
       <Helmet>
         <title>D3 Charts</title>
       </Helmet>
-      <BarChart x={x} data={data} />
+      <BarChart x={x} data={data} barBackground={"coral"} />
     </React.Fragment>
   );
 };
