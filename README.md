@@ -9,7 +9,7 @@ There's two apps in this repo, the client-side react app, and a server-side reac
 
 The `.loadData` function is defined and exported from select components if they need to load/request data. We're doing this so that components/pages that need to load/request data, can do so server side. The flow is: 
 * `loadData` is defined in some Components
-* `loadData` is imported and used in `Routes.tsx`
+* `loadData` is imported with routes in `Routes.tsx`
 * `loadData` is used here based on routes found in `Routes.tsx`
 * we pass in `store` into `loadData` which will be used in the component to execute the `dispatch` to load/request data
 * we have a `return`, and since `loadData` is for loading/requesting data, the value is a `promise`.

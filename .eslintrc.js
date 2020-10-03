@@ -38,5 +38,7 @@ module.exports = {
       asyncArrow: "always",
     }],
     "@typescript-eslint/explicit-member-accessibility": 2,
+    "no-use-before-define": [0],
+    "@typescript-eslint/no-use-before-define": [1],
   },
 };

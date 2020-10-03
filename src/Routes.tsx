@@ -1,6 +1,6 @@
 import { RouteConfig } from "react-router-config";
 import { Base } from "./client/template";
-import { Home, UsersList, NotFoundPage, AdminsList, Theme } from "./client/pages";
+import { Home, UsersList, NotFoundPage, AdminsList, Theme, Charts } from "./client/pages";
 
 // {9}
 export default [
@@ -23,6 +23,10 @@ export default [
       {
         ...Theme,
         path: "/theme",
+      },
+      {
+        ...Charts,
+        path: "/charts",
       },
       {
         ...NotFoundPage, // {13}
