@@ -1,42 +1,45 @@
 import * as React from "react";
-import { max, range, scaleBand, scaleLinear } from "d3";
+import { max, range, scaleBand, scaleLinear, csvParse, autoType } from "d3";
 import { IBarChartProps } from "../../../types";
 
-// {19}
-export const BarChart = (props: IBarChartProps) => {
-  const { x = 420, y = 20, data, barBackground } = props; // {19a}
+interface IDatum {
+  name: string;
+  value: number;
+}
 
-  // {19b}
+export const BarChart = (props: IBarChartProps) => {
+  const { x = 420, y = 20, data, barBackground } = props;
+  const parsedData = csvParse(data, autoType);
+
   const xScale =
     scaleLinear()
-      .domain([0, max(data)])
+      .domain([0, max(parsedData, (d: IDatum) => d.value)])
       .range([0, x]);
 
-  // {19c}
   const yScale =
     scaleBand()
-      .domain(range(data.length).map((d) => `${d}`))
-      .range([0, y * data.length]);
+      .domain(parsedData.map((d: IDatum) => d.name))
+      .range([0, y * parsedData.length]);
 
-  const bar = (d: number, i: number) => {
+  const bar = (d: IDatum, i: number) => {
     const barAttr = {
       fill: barBackground,
-      width: xScale(d),
+      width: xScale(d.value),
       height: yScale.bandwidth() - 1,
     };
     const textAttr = {
       fill: "white",
-      x: xScale(d) - (y / 2), // {19d}
+      x: xScale(d.value) - (y / 2),
       y: yScale.bandwidth() / 2,
       dy: "0.35em",
     };
-    const barPosition = yScale(`${i}`);
+    const barPosition = yScale(`${d.name}`);
     return (
-      <g key={d} transform={`translate(0,${barPosition})`}>
+      <g key={d.name} transform={`translate(0,${barPosition})`}>
         <rect {...barAttr}>
         </rect>
         <text {...textAttr}>
-          {d}
+          {d.name}
         </text>
       </g>
     );
@@ -50,13 +53,12 @@ export const BarChart = (props: IBarChartProps) => {
       fontSize: 10,
       textAnchor: "end",
     };
+    const bars = (parsedData as IDatum[]).map((d, i) => {
+      return bar(d, i);
+    });
     return (
       <svg {...svgStyle}>
-        {
-          data.map((d, i) => {
-            return bar(d, i);
-          })
-        }
+        {bars}
       </svg>
     );
   };

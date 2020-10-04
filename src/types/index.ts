@@ -19,6 +19,7 @@ export interface State {
   admins: IAdmin[];
   users: Array<Users>;
   auth: any;
+  graphCSV: string;
 }
 
 export interface StaticContext {
