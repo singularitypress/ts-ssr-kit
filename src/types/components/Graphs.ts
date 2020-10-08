@@ -1,6 +1,6 @@
 export interface IBarChartProps {
-  x?: number;
-  y?: number;
+  width?: number;
+  height?: number;
   data: string,
   barBackground?: string;
 }
