@@ -31,19 +31,13 @@ export const BarChart = (props: IBarChartProps) => {
   const xAxis = create("g").call(axisBottom(x));
   const yAxis = create("g").call(axisLeft(y));
 
-  const drawChart = () => {
-    return (
+  return (
+    <div className="chart">
       <svg viewBox={`0,0,${width},${height}`}>
         <g transform={`translate(0,${height - margin.bottom})`} textAnchor="middle" dangerouslySetInnerHTML={{ __html: xAxis.html() }}/>
         <g transform={`translate(${margin.left},0)`} textAnchor="end" dangerouslySetInnerHTML={{ __html: yAxis.html() }}>
         </g>
       </svg>
-    );
-  };
-
-  return (
-    <div className="chart">
-      {drawChart()}
     </div>
   );
 };
