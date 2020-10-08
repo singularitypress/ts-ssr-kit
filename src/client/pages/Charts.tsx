@@ -14,14 +14,6 @@ const _Charts = () => {
     if (!csvData) Axios.get(CSV).then((res) => { setData(res.data); });
   });
 
-  const renderChart = () => {
-    if (csvData) {
-      return <BarChart width={500} height={500} data={csvData} barBackground={"darkgreen"} />;
-    } else {
-      return <></>;
-    }
-  };
-
   return (
     <React.Fragment>
       <Helmet>

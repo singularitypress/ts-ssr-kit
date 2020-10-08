@@ -1,5 +1,5 @@
 import * as React from "react";
-import { max, scaleBand, scaleLinear, csvParse, autoType } from "d3";
+import { max, scaleBand, scaleLinear, csvParse, autoType, axisBottom, create, axisLeft } from "d3";
 import { IBarChartProps } from "../../../types";
 
 interface IDatum {
@@ -28,15 +28,18 @@ export const BarChart = (props: IBarChartProps) => {
       .domain([0, max(parsedData, (d: IDatum) => d.frequency)])
       .range([height - margin.bottom, margin.top]);
 
+  const xAxis = create("g").call(axisBottom(x));
+  const yAxis = create("g").call(axisLeft(y));
+
   const drawChart = () => {
     return (
       <svg viewBox={`0,0,${width},${height}`}>
-
+        <g transform={`translate(0,${height - margin.bottom})`} dangerouslySetInnerHTML={{ __html: xAxis.html() }}/>
+        <g transform={`translate(${margin.left},0)`} dangerouslySetInnerHTML={{ __html: yAxis.html() }}>
+        </g>
       </svg>
     );
   };
-
-  console.log(x.bandwidth());
 
   return (
     <div className="chart">
