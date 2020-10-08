@@ -34,8 +34,8 @@ export const BarChart = (props: IBarChartProps) => {
   const drawChart = () => {
     return (
       <svg viewBox={`0,0,${width},${height}`}>
-        <g transform={`translate(0,${height - margin.bottom})`} dangerouslySetInnerHTML={{ __html: xAxis.html() }}/>
-        <g transform={`translate(${margin.left},0)`} dangerouslySetInnerHTML={{ __html: yAxis.html() }}>
+        <g transform={`translate(0,${height - margin.bottom})`} textAnchor="middle" dangerouslySetInnerHTML={{ __html: xAxis.html() }}/>
+        <g transform={`translate(${margin.left},0)`} textAnchor="end" dangerouslySetInnerHTML={{ __html: yAxis.html() }}>
         </g>
       </svg>
     );
