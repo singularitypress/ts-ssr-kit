@@ -21,7 +21,7 @@ const _Charts = () => {
       </Helmet>
       <Container>
         <Lazy condition={!!csvData}>
-          <BarChart width={csvData ? window.innerWidth : 500} height={500} data={csvData} barBackground={"darkgreen"} />
+          <BarChart width={csvData ? window.innerWidth : 500} height={700} data={csvData} barBackground={"steelblue"} />
         </Lazy>
       </Container>
     </React.Fragment>
