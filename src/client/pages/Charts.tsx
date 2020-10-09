@@ -28,4 +28,4 @@ const _Charts = () => {
   );
 };
 
-export const Charts = { component: _Charts, title: "D3 Charts" };
+export const Charts = { component: _Charts };
