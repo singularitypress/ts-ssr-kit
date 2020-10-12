@@ -9,7 +9,7 @@ There's two apps in this repo, the client-side react app, and a server-side reac
 
 The `.loadData` function is defined and exported from select components if they need to load/request data. We're doing this so that components/pages that need to load/request data, can do so server side. The flow is: 
 * `loadData` is defined in some Components
-* `loadData` is imported and used in `Routes.tsx`
+* `loadData` is imported with routes in `Routes.tsx`
 * `loadData` is used here based on routes found in `Routes.tsx`
 * we pass in `store` into `loadData` which will be used in the component to execute the `dispatch` to load/request data
 * we have a `return`, and since `loadData` is for loading/requesting data, the value is a `promise`.
@@ -98,3 +98,22 @@ Lets just put all of our authentication checking and handling (in case users are
 
 ### 18a.
 Using react router's `<Redirect to="" />` isn't meaningful on the server. So we have to check the context to see if there's a `url` property and thus do an express redirect.
+
+## 19.
+Too many tutorials have this weird fixation with having D3 draw the DOM instead of letting the virtual DOM through React handle it. We'll still use D3 for math, but `svg`, `g`, `rect`, etc elements are going to be made in React.
+
+### 19a.
+* `x` will denote the width of the graph, defaulting to `420`
+* `y` will denote the width of each bar, defaulting to `20`
+* `data` is the `number[]` that we're using to make this chart
+* `barBackground` is the what we'll use the colour the bars with, in theory you could probably use a background image.
+
+### 19b.
+`xScale` is what we'll use for calculating the width of the bar. The `domain` says the minimum and maximum data points we're scaling with, the `range` says the minimum and maximum x-axis range we're working with.
+i.e. Your data's `domain` can be `0` and `42`, and your `range` can be `0` and `400`. So if you try `xScale(15)`, it'll calculate- how many times bigger is `400` versus `42` and multiply that by `15`.
+
+### 19c.
+This is a little more obscure, how we're using it though is to calculate the height of bars. `.range([0, y * data.length])` contains a range of `0` and the `y` multiplier (defaulted to `20`) times the size of the dataset (e.g. `6` items), giving us a range of `0` and `120` for example. If you wanted `yScale.bandwidth()`, you'd get the effective value of the multiplier- `20` in this running example. If you want some space between bars, set the `height` of them to be `yScale.bandwidth() - 1` so it's the size of each item in the range minus `1` so there's a pixel of space between each one.
+
+### 19d.
+I had to make a note for this- we're putting the text at the ass-end of the bar with `xScale(d)` which itself returns the length of the bar, then you're subtracting the almost-thiccness of the bar `y` so it's not ALL the way at the end.
