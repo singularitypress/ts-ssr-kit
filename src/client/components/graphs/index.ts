@@ -1,2 +1,2 @@
 export * from "./BarChart";
-export * from "./PieGraph";
+export * from "./PieChart";
