@@ -21,6 +21,7 @@ const _Charts = () => {
       </Helmet>
       <Container>
         <Lazy condition={!!csvData}>
+          <h1 className="text-center text-2xl">The relative frequency of letters in the English language</h1>
           <BarChart width={csvData ? window.innerWidth : 500} height={700} data={csvData} barBackground={"steelblue"} />
         </Lazy>
       </Container>
