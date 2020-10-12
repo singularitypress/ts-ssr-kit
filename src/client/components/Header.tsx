@@ -26,7 +26,10 @@ const _Header = (props: IHeader) => {
         <li className={setActiveClass("/theme")}>
           <Link to="/theme">Theme</Link>
         </li>
-        <li>{authBtn}</li>
+        <li className={setActiveClass("/charts")}>
+          <Link to="/charts">Chart Dashboard</Link>
+        </li>
+        {/* <li>{authBtn}</li> */}
       </ul>
     </nav>
   );
