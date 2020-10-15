@@ -4,6 +4,7 @@ import {
   csvParse,
   DefaultArcObject,
   pie,
+  PieArcDatum,
   scaleOrdinal,
   schemeCategory10,
 } from "d3";
@@ -18,9 +19,7 @@ interface ISliceProps {
 }
 
 interface IPieProps {
-  x: number;
-  y: number;
-  data: any[];
+  data: number[];
   radius: number;
 }
 
@@ -33,21 +32,25 @@ const Shape = (props: ISliceProps) => {
 };
 
 const Pie = (props: IPieProps) => {
-  const {
-    x, y, data, radius,
-  } = props;
+  const { data, radius } = props;
   const colour = scaleOrdinal(schemeCategory10);
   const _pie = pie();
 
-  const renderSlice = (arcObj: any, i: any) => {
-    return <Shape key={i} outerRadius={radius} arcObj={arcObj} fill={colour(`${i}`)} />;
+  const renderSlice = (
+    arcObj: PieArcDatum<number | { valueOf(): number }>,
+    i: any,
+  ) => {
+    return (
+      <Shape
+        key={i}
+        outerRadius={radius}
+        arcObj={arcObj}
+        fill={colour(`${i}`)}
+      />
+    );
   };
 
-  return (
-    <>
-      {_pie(data).map(renderSlice)}
-    </>
-  );
+  return <>{_pie(data).map(renderSlice)}</>;
 };
 
 export const PieChart = (props: IPieChartProps) => {
@@ -55,14 +58,19 @@ export const PieChart = (props: IPieChartProps) => {
 
   const parsedData = csvParse(data, autoType);
   const radius = (Math.min(width, height) * 0.9) / 2;
-  const x = (width / 2) + (height / 4);
+  const x = width / 2 + height / 4;
   const y = height / 2;
 
   return (
     <div className="chart">
       <svg width={"100%"} height={height}>
         <g stroke="white" transform={`translate(${x},${y})`}>
-          <Pie x={x} y={y} data={Array.prototype.slice.call(parsedData).map((d: any) => d.percent)} radius={radius} />
+          <Pie
+            data={Array.prototype.slice
+              .call(parsedData)
+              .map((d: any) => d.percent)}
+            radius={radius}
+          />
         </g>
       </svg>
     </div>
