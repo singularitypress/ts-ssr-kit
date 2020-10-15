@@ -15,7 +15,8 @@ export const PiesGraph = () => {
 
   return (
     <Lazy condition={!!csvData}>
-      <h1 className="text-center text-2xl">The relative frequency of letters in the English language</h1>
+      <h1 className="text-center text-2xl">Popularity of pies</h1>
+      <PieChart data={csvData} />
     </Lazy>
   );
 };

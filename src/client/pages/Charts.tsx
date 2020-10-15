@@ -2,7 +2,7 @@ import Axios from "axios";
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import { Container } from "../components/atomic";
-import { AlphabetGraph } from "../components/experience-fragments";
+import { AlphabetGraph, PiesGraph } from "../components/experience-fragments";
 
 const { useState, useEffect } = React;
 
@@ -21,6 +21,7 @@ const _Charts = () => {
       </Helmet>
       <Container>
         <AlphabetGraph />
+        <PiesGraph />
       </Container>
     </React.Fragment>
   );
