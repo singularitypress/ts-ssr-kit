@@ -22,7 +22,7 @@ var config = () => {
         {
           test: /\.(t|j)sx?$/,
           include: APP_DIR,
-          loader: "awesome-typescript-loader",
+          loader: "ts-loader",
           exclude: NODE_MODULES,
         },
         {
