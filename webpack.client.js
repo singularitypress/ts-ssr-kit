@@ -7,7 +7,7 @@ const STYLE_DIR = path.resolve(__dirname, "style");
 const NODE_MODULES = path.resolve(__dirname, "node_modules");
 const NAME = "bundle";
 
-var config = () => {
+const config = () => {
   return {
     entry: [`${APP_DIR}/client.tsx`, `${STYLE_DIR}/index.scss`],
     resolve: {

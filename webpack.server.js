@@ -7,7 +7,7 @@ const APP_DIR = path.resolve(__dirname, "src");
 const NODE_MODULES = path.resolve(__dirname, "node_modules");
 const NAME = "bundle";
 
-var config = () => {
+const config = () => {
   return {
     target: "node",
     entry: [`${APP_DIR}/server.tsx`],
