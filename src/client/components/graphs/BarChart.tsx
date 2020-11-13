@@ -58,7 +58,7 @@ export const BarChart = (props: IBarChartProps) => {
   return (
     <div className="chart">
       <svg viewBox={`0,0,${width},${height}`}>
-        <g fill={barBackground}>
+        <g className={`fill-current ${barBackground}`}>
           {bars()}
         </g>
         <g
