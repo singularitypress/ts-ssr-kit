@@ -4,3 +4,9 @@ export interface IBarChartProps {
   data: string,
   barBackground?: string;
 }
+
+export interface IPieChartProps {
+  width?: number;
+  height?: number;
+  data: string;
+}

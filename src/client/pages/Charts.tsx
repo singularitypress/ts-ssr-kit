@@ -1,8 +1,8 @@
 import Axios from "axios";
 import * as React from "react";
 import { Helmet } from "react-helmet";
-import { BarChart } from "../components";
-import { Container, Lazy } from "../components/atomic";
+import { Container } from "../components/atomic";
+import { AlphabetGraph, PiesGraph } from "../components/experience-fragments";
 
 const { useState, useEffect } = React;
 
@@ -20,10 +20,8 @@ const _Charts = () => {
         <title>D3 Charts</title>
       </Helmet>
       <Container>
-        <Lazy condition={!!csvData}>
-          <h1 className="text-center text-2xl">The relative frequency of letters in the English language</h1>
-          <BarChart width={csvData ? window.innerWidth : 500} height={700} data={csvData} barBackground={"steelblue"} />
-        </Lazy>
+        <AlphabetGraph />
+        <PiesGraph />
       </Container>
     </React.Fragment>
   );
