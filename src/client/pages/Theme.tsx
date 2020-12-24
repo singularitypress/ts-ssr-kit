@@ -1,26 +1,29 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
+import { Button } from "../components/atomic";
 
 const _Theme = () => {
-  const gridClassName = "w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4";
+  const gridClassName = "";
+  const levels = () => {
+    return ["00", "01", "02", "03", "04", "06", "08", "12", "16", "24"]
+      .map(
+        (level) => {
+          return <figure key={level} className={`rounded-xl p-8 ${gridClassName} dp-${level}`}>dp{level}</figure>;
+        },
+      );
+  };
   return (
     <React.Fragment>
       <Helmet>
         <title>Theme</title>
       </Helmet>
       <div className="container theme-cards">
-        <div className="flex flex-wrap">
-          <div className={`${gridClassName} dp-00`}>dp00</div>
-          <div className={`${gridClassName} dp-01`}>dp01</div>
-          <div className={`${gridClassName} dp-02`}>dp02</div>
-          <div className={`${gridClassName} dp-03`}>dp03</div>
-          <div className={`${gridClassName} dp-04`}>dp04</div>
-          <div className={`${gridClassName} dp-06`}>dp06</div>
-          <div className={`${gridClassName} dp-08`}>dp08</div>
-          <div className={`${gridClassName} dp-12`}>dp12</div>
-          <div className={`${gridClassName} dp-16`}>dp16</div>
-          <div className={`${gridClassName} dp-24`}>dp24</div>
+        <h1 className="text-5xl">Cards</h1>
+        <div className="grid grid-cols-3 gap-4 mt-4">
+          {levels()}
         </div>
+        <h1 className="text-5xl">Buttons</h1>
+        <Button>Test Button</Button>
       </div>
     </React.Fragment>
   );
