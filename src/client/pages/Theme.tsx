@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Button } from "../components/atomic";
 
 const _Theme = () => {
+  const [count, setCount] = React.useState(0);
   const gridClassName = "";
   const levels = () => {
     return ["00", "01", "02", "03", "04", "06", "08", "12", "16", "24"]
@@ -23,7 +24,7 @@ const _Theme = () => {
           {levels()}
         </div>
         <h1 className="text-5xl mb-4">Buttons</h1>
-        <Button>Test Button</Button>
+        <Button onClick={() => { setCount(count + 1); console.log(count); }}>Test Button</Button>
       </div>
     </React.Fragment>
   );
