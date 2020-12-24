@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
-import { Button } from "../components/atomic";
+import { Button, Spacing } from "../components/atomic";
 
 const _Theme = () => {
   const gridClassName = "";
@@ -19,7 +19,7 @@ const _Theme = () => {
       </Helmet>
       <div className="container theme-cards">
         <h1 className="text-5xl">Cards</h1>
-        <div className="grid grid-cols-3 gap-4 mt-4">
+        <div className="grid grid-cols-3 gap-4 mt-4 mb-4">
           {levels()}
         </div>
         <h1 className="text-5xl">Buttons</h1>
