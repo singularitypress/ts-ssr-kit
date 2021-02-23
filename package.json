@@ -34,7 +34,7 @@
 		"redux": "^4.0.5",
 		"redux-thunk": "^2.3.0",
 		"serialize-javascript": "^5.0.1",
-		"tailwindcss": "^2.0.1"
+		"tailwindcss": "^2.0.3"
 	},
 	"devDependencies": {
 		"@types/compression": "^1.7.0",
@@ -66,7 +66,7 @@
 		"npm-run-all": "^4.1.5",
 		"postcss": "^8.1.1",
 		"postcss-loader": "^5.0.0",
-		"sass-loader": "^10.1.0",
+		"sass-loader": "^11.0.1",
 		"source-map-loader": "^2.0.0",
 		"style-loader": "^2.0.0",
 		"ts-loader": "^8.0.11",

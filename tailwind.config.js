@@ -1,9 +1,12 @@
 module.exports = {
-  purge: {
-    enabled: true,
-    content: ["./src/client/**/*.tsx"],
-  },
+  purge: [
+    "./src/client/**/*.tsx",
+  ],
+  darkMode: "media", // or 'media' or 'class'
   theme: {
+    extend: {},
+  },
+  variants: {
     extend: {},
     screens: {
       sm: { min: "576px", max: "767.98px" },
@@ -12,11 +15,7 @@ module.exports = {
       xl: { min: "1200px" },
     },
   },
-  variants: {},
   plugins: [
     require("@tailwindcss/typography"),
   ],
-  future: {
-    removeDeprecatedGapUtilities: true,
-  },
 };
