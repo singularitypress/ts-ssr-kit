@@ -4,6 +4,7 @@ module.exports = {
     enabled: true,
     content: ["./src/client/**/*.tsx"],
   },
+  darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {},
     screens: {
@@ -13,11 +14,10 @@ module.exports = {
       xl: { min: "1200px" },
     },
   },
-  variants: {},
+  variants: {
+    extend: {},
+  },
   plugins: [
     require("@tailwindcss/typography"),
   ],
-  future: {
-    removeDeprecatedGapUtilities: true,
-  },
 };
