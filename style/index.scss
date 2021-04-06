@@ -4,5 +4,15 @@
 
 @tailwind utilities;
 
+@font-face {
+  font-family: "Type-M";
+  src: local("fonts/Type-M"), url(fonts/Type-M.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Type-DB";
+  src: local("fonts/Type-DB"), url(fonts/Type-DB.otf) format("opentype");
+}
+
 @import "./global/index.scss";
 @import "./components/index.scss";
