@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 app.use(compression());
 // {5}
 app.use(express.static("public"));
+app.use(express.static("assets"));
 // {6}
 app.use("/api", proxy("http://react-ssr-api.herokuapp.com", {
   proxyReqOptDecorator: (opts) => {
@@ -37,7 +38,7 @@ app.get("*", (req, res) => {
           return new Promise((resolve, reject) => {
             promise.then(resolve).catch(resolve);
           });
-        }
+        } else return false;
       });
   Promise.all(promises).then(() => {
     // {14}

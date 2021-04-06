@@ -1,6 +1,7 @@
 const path = require("path");
 
 const BUILD_DIR = path.resolve(__dirname, "public");
+const FONT_DIR = path.resolve(__dirname, "assets/fonts");
 const APP_DIR = path.resolve(__dirname, "src");
 const STYLE_DIR = path.resolve(__dirname, "style");
 const NODE_MODULES = path.resolve(__dirname, "node_modules");
@@ -58,6 +59,34 @@ const config = () => {
               loader: "sass-loader",
               options: {
                 sourceMap: true,
+              },
+            },
+          ],
+        },
+        {
+          test: /(Type-M)\.(woff|woff2|eot|ttf|otf)$/,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "Type-M.otf",
+                context: FONT_DIR,
+                outputPath: "./",
+                publicPath: "/",
+              },
+            },
+          ],
+        },
+        {
+          test: /(Type-DB)\.(woff|woff2|eot|ttf|otf)$/,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "Type-DB.otf",
+                context: FONT_DIR,
+                outputPath: "./",
+                publicPath: "/",
               },
             },
           ],

@@ -38,6 +38,9 @@ nav {
     bottom: 0px;
     height: 75px;
   }
+  body {
+    padding-bottom: 75px;
+  }
 }
 
 @include media-breakpoint-up("lg") {

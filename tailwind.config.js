@@ -4,9 +4,13 @@ module.exports = {
     enabled: true,
     content: ["./src/client/**/*.tsx"],
   },
-  darkMode: "media", // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Type-M"],
+        bold: ["Type-DB"],
+      },
+    },
     screens: {
       sm: { min: "576px", max: "767.98px" },
       md: { min: "768px", max: "991.98px" },
