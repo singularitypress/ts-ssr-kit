@@ -1,6 +1,6 @@
-import * as express from "express";
-import * as proxy from "express-http-proxy";
-import * as compression from "compression";
+import express from "express";
+import proxy from "express-http-proxy";
+import compression from "compression";
 import { matchRoutes } from "react-router-config";
 import { renderer, setStore } from "./helpers";
 import Routes from "./Routes";
