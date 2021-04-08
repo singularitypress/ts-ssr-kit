@@ -10,9 +10,9 @@
 		"dev": "npm-run-all --parallel dev:server dev:*",
 		"dev:server": "nodemon --watch ./src --ext 'ts,json' --exec \"npx ts-node ./src/server.tsx\"",
 		"dev:build-client": "webpack --config webpack.client.js --mode development --watch",
-		"start": "node build/bundle.js",
-		"build": "webpack --config webpack.client.js --mode production && webpack --config webpack.server.js --mode production",
-		"build:start": "npm run build && npm run start"
+		"start": "npx ts-node src/server.tsx",
+		"build": "webpack --config webpack.client.js --mode production",
+		"build:start": "npm run build && npm start"
 	},
 	"author": "",
 	"license": "ISC",
