@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as serialize from "serialize-javascript";
+import serialize from "serialize-javascript";
 import { renderRoutes } from "react-router-config";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
