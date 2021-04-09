@@ -2,11 +2,11 @@
 	"compilerOptions": {
 		"lib": ["es5", "es6", "dom"],
 		"sourceMap": true,
-		"noImplicitAny": true,
+		"noImplicitAny": false,
 		"module": "commonjs",
 		"target": "es5",
 		"jsx": "react",
-		"esModuleInterop": true
+		"esModuleInterop": true,
 	},
 	"include": ["./src/*"],
 	"exclude": ["node_modules"]
