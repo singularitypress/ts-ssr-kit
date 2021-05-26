@@ -15,4 +15,9 @@ const _Home = () => {
   );
 };
 
-export const Home = { component: _Home, title: "Home" };
+export const Home = {
+  component: _Home,
+  title: "Home",
+  path: "/",
+  exact: true,
+};

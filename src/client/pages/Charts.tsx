@@ -27,4 +27,7 @@ const _Charts = () => {
   );
 };
 
-export const Charts = { component: _Charts };
+export const Charts = {
+  component: _Charts,
+  path: "/charts",
+};
