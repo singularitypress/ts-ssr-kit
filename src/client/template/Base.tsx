@@ -1,9 +1,7 @@
 import * as React from "react";
 import { Header } from "../components";
 import { renderRoutes } from "react-router-config";
-import { fetchCurrentUser } from "../actions";
 import { BaseProps } from "../../types";
-import { Store } from "redux";
 
 // {9}
 const _base = (props: BaseProps) => {
@@ -20,5 +18,4 @@ const _base = (props: BaseProps) => {
 // {12}
 export const Base = {
   component: _base,
-  loadData: (store: Store) => store.dispatch(fetchCurrentUser() as any),
 };

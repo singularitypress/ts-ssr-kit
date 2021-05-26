@@ -1,23 +1,19 @@
 import * as React from "react";
-import serialize from "serialize-javascript";
 import { renderRoutes } from "react-router-config";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
-import { Provider } from "react-redux";
 import { Helmet } from "react-helmet";
 
 import Routes from "../Routes";
 
 // {14}
-export const renderer = (req: any, store: any, serverContext: any) => {
+export const renderer = (req: any, serverContext: any) => {
   const content = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={req.path} context={serverContext}>
+    <StaticRouter location={req.path} context={serverContext}>
         <React.Fragment>
           {renderRoutes(Routes)}
         </React.Fragment>
-      </StaticRouter>
-    </Provider>,
+      </StaticRouter>,
   );
 
   const helmet = Helmet.renderStatic();
@@ -57,7 +53,6 @@ export const renderer = (req: any, store: any, serverContext: any) => {
       </head>
       <body>
         <div id="root">${content}</div>
-        <script>window.INIT = ${serialize(store.getState())}</script>
         <script async defer src="bundle.js"></script>
       </body>
     </html>

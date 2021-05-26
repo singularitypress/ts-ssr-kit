@@ -1,33 +1,11 @@
 import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { State, IHeader } from "../../types";
-import { connect } from "react-redux";
+import { IHeader } from "../../types";
 
-const _Header = (props: IHeader) => {
-  const authBtn =
-  props.auth
-    ? (<a href="/api/logout">Logout</a>)
-    : (<a href="/api/auth/google">Login</a>);
-
+export const Header = (props: IHeader) => {
   const setActiveClass = (route: string) =>
     useLocation().pathname === route ? "active" : "";
 
-  const unusedNavLinks = () => {
-    return (
-      <>
-        <li className={setActiveClass("/users")}>
-          <Link to="/users">Users</Link>
-        </li>
-        <li className={setActiveClass("/admins")}>
-          <Link to="/admins">Admins</Link>
-        </li>
-        <li className={setActiveClass("/charts")}>
-          <Link to="/charts">Chart Dashboard</Link>
-        </li>
-        <li>{authBtn}</li>
-      </>
-    );
-  };
   return (
     <nav>
       <ul className="nav">
@@ -41,9 +19,3 @@ const _Header = (props: IHeader) => {
     </nav>
   );
 };
-
-const mapStateToProps = ({ auth }: State) => {
-  return { auth };
-};
-
-export const Header = connect(mapStateToProps)(_Header);
