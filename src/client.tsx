@@ -16,9 +16,9 @@ const root = document.querySelector("#root");
  */
 ReactDOM.hydrate(
   <BrowserRouter>
-    <React.Fragment>
+    <>
       {renderRoutes(Routes)}
-    </React.Fragment>
+    </>
   </BrowserRouter>,
   root,
 );

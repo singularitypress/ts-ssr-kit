@@ -7,5 +7,13 @@ html {
     @media (prefers-color-scheme: dark) {
       color: $white;
     }
+
+    @include media-breakpoint-up("lg") {
+      padding-top: 50px;
+    }
+    
+    @include media-breakpoint-down("lg") {
+      padding-bottom: 75px;
+    }
   }
 }

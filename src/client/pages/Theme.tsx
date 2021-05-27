@@ -14,7 +14,7 @@ const _Theme = () => {
       );
   };
   return (
-    <React.Fragment>
+    <>
       <Helmet>
         <title>Theme</title>
       </Helmet>
@@ -26,7 +26,7 @@ const _Theme = () => {
         <h1 className="text-5xl mb-4">Buttons</h1>
         <Button onClick={() => { setCount(count + 1); console.log(count); }}>Test Button</Button>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

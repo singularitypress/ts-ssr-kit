@@ -15,7 +15,7 @@ const _Charts = () => {
   });
 
   return (
-    <React.Fragment>
+    <>
       <Helmet>
         <title>D3 Charts</title>
       </Helmet>
@@ -23,7 +23,7 @@ const _Charts = () => {
         <AlphabetGraph />
         <PiesGraph />
       </Container>
-    </React.Fragment>
+    </>
   );
 };
 

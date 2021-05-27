@@ -10,9 +10,9 @@ import Routes from "../Routes";
 export const renderer = (req: any, serverContext: any) => {
   const content = renderToString(
     <StaticRouter location={req.path} context={serverContext}>
-        <React.Fragment>
+        <>
           {renderRoutes(Routes)}
-        </React.Fragment>
+        </>
       </StaticRouter>,
   );
 
