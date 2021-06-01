@@ -82,6 +82,11 @@ const config = () => {
     devServer: {
       historyApiFallback: true,
     },
+    externals: {
+      react: "React",
+      "react-dom": "ReactDOM",
+      axios: "axios",
+    },
   };
 };
 

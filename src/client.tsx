@@ -4,7 +4,6 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import axios from "axios";
 
 import { renderRoutes } from "react-router-config";
 import { BrowserRouter } from "react-router-dom";
@@ -16,9 +15,7 @@ const root = document.querySelector("#root");
  */
 ReactDOM.hydrate(
   <BrowserRouter>
-    <>
-      {renderRoutes(Routes)}
-    </>
+    {renderRoutes(Routes)}
   </BrowserRouter>,
   root,
 );

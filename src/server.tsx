@@ -1,5 +1,4 @@
 import express from "express";
-import proxy from "express-http-proxy";
 import compression from "compression";
 import { renderer } from "./helpers";
 import { StaticContext } from "./types";

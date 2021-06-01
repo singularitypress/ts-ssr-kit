@@ -1,8 +1,8 @@
 import axios from "axios";
 import * as React from "react";
 import { Helmet } from "react-helmet";
-import { Hero } from "../components";
-import { Button } from "../components/atomic";
+import { Hero } from "../components/Hero";
+import { Button } from "../components/atomic/Button";
 
 interface ITransaction {
   description: string;
