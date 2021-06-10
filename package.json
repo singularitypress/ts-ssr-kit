@@ -2,13 +2,13 @@
 	"name": "ts-ssr-kit",
 	"version": "1.0.0",
 	"engines": {
-		"node": "15.x"
+		"node": "16.x"
 	},
 	"main": "./build/bundle.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "npm-run-all --parallel dev:server dev:*",
-		"dev:server": "nodemon --watch ./src --ext 'ts,json' --exec \"webpack --config webpack.server.js --mode development && node build/bundle.js\"",
+		"dev:server": "nodemon --watch ./src --ext 'ts,json,tsx' --exec \"webpack --config webpack.server.js --mode development && node build/bundle.js\"",
 		"dev:build-client": "webpack --config webpack.client.js --mode development --watch",
 		"start": "node build/bundle.js",
 		"build": "webpack --config webpack.client.js --mode production && webpack --config webpack.server.js --mode production",
