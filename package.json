@@ -8,7 +8,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "npm-run-all --parallel dev:server dev:*",
-		"dev:server": "nodemon --watch ./src --ext 'ts,json,tsx' --exec \"webpack --config webpack.server.js --mode development && node build/bundle.js\"",
+		"dev:server": "nodemon --watch ./src/** -e ts,json,tsx --exec \"npx webpack --config webpack.server.js --mode development && node build/bundle.js\"",
 		"dev:build-client": "webpack --config webpack.client.js --mode development --watch",
 		"start": "node build/bundle.js",
 		"build": "webpack --config webpack.client.js --mode production && webpack --config webpack.server.js --mode production",
@@ -17,7 +17,7 @@
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
-		"@tailwindcss/forms": "^0.3.2",
+		"@tailwindcss/forms": "^0.3.3",
 		"@tailwindcss/typography": "^0.4.0",
 		"axios": "^0.21.0",
 		"compression": "^1.7.4",
@@ -72,7 +72,7 @@
 		"style-loader": "^3.0.0",
 		"ts-loader": "^9.1.2",
 		"typescript": "^4.3.5",
-		"webpack": "^5.42.1",
+		"webpack": "^5.47.1",
 		"webpack-cli": "^4.6.0",
 		"webpack-node-externals": "^3.0.0"
 	},
