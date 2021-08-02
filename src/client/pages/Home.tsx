@@ -33,7 +33,7 @@ const _Home = () => {
     fragment transactionInfo on Transaction {
       ${fragment.join(",")}
     }`;
-  const next = (res: IRes) => { setTransactions(res.data.transactions); console.log(transactions); };
+  const next = (res: IRes) => { setTransactions(res.data.transactions); };
 
   useEffect(() => {
     console.log(transactions);
@@ -44,11 +44,14 @@ const _Home = () => {
       <Helmet>
         <title>Home</title>
       </Helmet>
-      <Hero video={{ src: "https://i.imgur.com/FvaJnWc.mp4" }} height="100vh">
+      <Hero video={{ src: "https://thumbs.gfycat.com/DismalIcyCommongonolek-mobile.mp4" }} height="100vh">
         <h1 className="prose prose-headline text-center">Welcome Home</h1>
         <form onSubmit={(e) => { e.preventDefault(); }}>
-          <input style={{ padding: "1rem", borderRadius: "999px", color: "#333" }} type="text" onChange={(e) => setKeyword(e.target.value)} />
-
+          <input
+            style={{ padding: "1rem", borderRadius: "999px", color: "#333" }}
+            type="text"
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder="Search for payees"/>
           <br />
           <Button onClick={() => wsQuery(query, next)}>graphql check</Button>
         </form>
