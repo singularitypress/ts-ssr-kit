@@ -1,15 +1,9 @@
-import { AxiosResponse } from "axios";
 import { IAdmin } from "./pages";
 
 export * from "./Base";
 export * from "./pages";
 export * from "./components";
 export * from "./utils";
-
-export interface ActionGet {
-  type: string;
-  payload: AxiosResponse;
-}
 
 export interface Users {
   id: number;
