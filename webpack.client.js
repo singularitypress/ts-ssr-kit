@@ -64,26 +64,12 @@ const config = () => {
           ],
         },
         {
-          test: /(Type-M)\.(woff|woff2|eot|ttf|otf)$/,
+          test: /\.(woff|woff2|eot|ttf|otf)$/,
           use: [
             {
               loader: "file-loader",
               options: {
-                name: "Type-M.otf",
-                context: FONT_DIR,
-                outputPath: "./",
-                publicPath: "/",
-              },
-            },
-          ],
-        },
-        {
-          test: /(Type-DB)\.(woff|woff2|eot|ttf|otf)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: "Type-DB.otf",
+                name: "[name].[ext]",
                 context: FONT_DIR,
                 outputPath: "./",
                 publicPath: "/",
@@ -95,6 +81,12 @@ const config = () => {
     },
     devServer: {
       historyApiFallback: true,
+    },
+    externals: {
+      react: "React",
+      "react-dom": "ReactDOM",
+      axios: "axios",
+      d3: "d3",
     },
   };
 };

@@ -1,5 +1,4 @@
 import express from "express";
-import proxy from "express-http-proxy";
 import compression from "compression";
 import { renderer } from "./helpers";
 import { StaticContext } from "./types";
@@ -11,13 +10,6 @@ const PORT = process.env.PORT || 3000;
 app.use(compression());
 // {5}
 app.use(express.static("public"));
-// {6}
-app.use("/api", proxy("http://react-ssr-api.herokuapp.com", {
-  proxyReqOptDecorator: (opts) => {
-    opts.headers["x-forwarded-host"] = `localhost:${PORT}`;
-    return opts;
-  },
-}));
 
 app.get("*", (req, res) => {
   // {14}

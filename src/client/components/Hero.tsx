@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Container } from "./atomic";
 import { IHeroProps } from "../../types";
 
@@ -7,7 +7,7 @@ export const Hero = (props: IHeroProps) => {
 
   const renderVideo = () => {
     return (
-      <video loop autoPlay src={video.src} style={{ minHeight: height, ...style }} />
+      <video muted={true} loop autoPlay={true} src={video.src} style={{ minHeight: height, ...style }} />
     );
   };
 

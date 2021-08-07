@@ -5,6 +5,17 @@ nav {
   justify-content: center;
   align-items: center;
   z-index: 999;
+  position: fixed;
+  width: 100%;
+  @include media-breakpoint-up("lg") {
+    height: 50px;
+    font-weight: 300;
+    top: 0;
+  }
+  @include media-breakpoint-down("lg") {
+    bottom: 0px;
+    height: 75px;
+  }
   .nav {
     display: inline-flex;
     height: 100%;
@@ -15,11 +26,20 @@ nav {
       display: inline-flex;
       align-items: center;
       border-bottom: 2px solid transparent;
+
+      > a {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
       &:first-child {
         margin-left: 0px;
       }
 
-      &.active {
+      > .active {
         border-bottom: 2px solid $dark-base;
         font-weight: 600;
 
@@ -28,24 +48,5 @@ nav {
         }
       }
     }
-  }
-}
-
-@include media-breakpoint-down("lg") {
-  nav {
-    position: fixed;
-    width: 100%;
-    bottom: 0px;
-    height: 75px;
-  }
-  body {
-    padding-bottom: 75px;
-  }
-}
-
-@include media-breakpoint-up("lg") {
-  nav {
-    height: 50px;
-    font-weight: 300;
   }
 }

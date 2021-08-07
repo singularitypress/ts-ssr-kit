@@ -1,28 +1,11 @@
 import { RouteConfig } from "react-router-config";
 import { Base } from "./client/template";
-import { Home, NotFoundPage, Theme, Charts } from "./client/pages";
+import * as pages from "./client/pages";
 
 // {9}
 export default [
   {
     ...Base,
-    routes: [
-      {
-        ...Home,
-        path: "/",
-        exact: true,
-      },
-      {
-        ...Theme,
-        path: "/theme",
-      },
-      {
-        ...Charts,
-        path: "/charts",
-      },
-      {
-        ...NotFoundPage, // {13}
-      },
-    ],
+    routes: Object.values(pages),
   },
 ] as RouteConfig[];
