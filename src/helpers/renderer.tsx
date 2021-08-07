@@ -53,7 +53,7 @@ export const renderer = (req: any, serverContext: any) => {
         <div id="root">${content}</div>
         <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossOrigin="anonymous" referrerPolicy="no-referrer"></script>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
         <script async defer src="bundle.js"></script>
       </body>
     </html>

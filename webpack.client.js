@@ -86,6 +86,7 @@ const config = () => {
       react: "React",
       "react-dom": "ReactDOM",
       axios: "axios",
+      d3: "d3",
     },
   };
 };
