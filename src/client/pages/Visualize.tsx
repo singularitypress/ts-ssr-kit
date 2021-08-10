@@ -1,5 +1,5 @@
 import { timeParse } from "d3";
-import * as React from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import { IRes } from "../../types";
 import { AreaChart } from "../components/data-visualization";
@@ -31,7 +31,7 @@ const _Visualize = () => {
   const next = (res: IRes) => {
     setData(res.data.transactions.map((d) => {
       return {
-        value: d.amount * -1,
+        value: d.amount,
         date: timeParse("%m/%d/%Y")(d.date),
       };
     }));

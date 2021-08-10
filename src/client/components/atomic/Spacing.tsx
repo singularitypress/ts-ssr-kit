@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 export const Spacing = (props: { size?: "sm" | "md" | "lg" | "xl" }) => {
   const { size = "sm" } = props;

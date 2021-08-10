@@ -2,8 +2,8 @@
   Startup point for the clientside application
 */
 
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 
 import { renderRoutes } from "react-router-config";
 import { BrowserRouter } from "react-router-dom";

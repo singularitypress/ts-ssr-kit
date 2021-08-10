@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 export const Lazy = (props: {children: React.ReactNode, condition: boolean}) => {
   if (!props.condition) {

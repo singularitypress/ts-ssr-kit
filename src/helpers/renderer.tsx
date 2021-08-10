@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { renderRoutes } from "react-router-config";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
@@ -54,6 +54,7 @@ export const renderer = (req: any, serverContext: any) => {
         <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
         <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/graphql-ws@5.3.0/umd/graphql-ws.min.js"></script>
         <script async defer src="bundle.js"></script>
       </body>
     </html>

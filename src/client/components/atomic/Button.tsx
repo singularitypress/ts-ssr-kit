@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 export const Button = (props: { children: React.ReactNode, onClick?: any }) => {
   const shape = "pt-3 pb-3 pr-6 pl-6 rounded-full";
