@@ -19,19 +19,20 @@ const _Visualize = () => {
   const [data, setData] = useState([] as IData[]);
 
   const query = `
-    {
-      transactions(${keyword}) {
-        ...transactionInfo
-      }
+  {
+    transactions(account: ["visa", "amex", "mastercard"] exclude: ["7027", "Payment BNS", "VOUCHER/RETURN", "ANNUAL FEE REVERSAL", "pmtsWA AMT 79.00 UNITED STATES DOLLAR", "AMZN Mktp US Amzn.com/billWA AMT 105.98 UNITED STATES DOLLAR"]) {
+      ...transactionInfo
     }
-    fragment transactionInfo on Transaction {
-      ${fragment.join(",")}
-    }`;
+  }
+  
+  fragment transactionInfo on Transaction {
+    description, amount, date, account, institution
+  }`;
 
   const next = (res: IRes) => {
     setData(res.data.transactions.map((d) => {
       return {
-        value: d.amount,
+        value: d.amount * -1,
         date: timeParse("%m/%d/%Y")(d.date),
       };
     }));
