@@ -7,10 +7,10 @@ export const Header = (props: IHeader) => {
     <nav>
       <ul className="nav">
         <li>
-          <NavLink to="/" exact={true} activeClassName="active">Home</NavLink>
+          <NavLink to="/" end>Home</NavLink>
         </li>
         <li>
-          <NavLink to="/theme"exact={true} activeClassName="active">Theme</NavLink>
+          <NavLink to="/theme" end>Theme</NavLink>
         </li>
       </ul>
     </nav>

@@ -1,19 +1,16 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
+    es2021: true,
+    node: true,
   },
   extends: ["plugin:react/recommended", "standard"],
-  globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
-  },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 13,
     sourceType: "module",
   },
   plugins: ["react", "@typescript-eslint"],
@@ -32,11 +29,14 @@ module.exports = {
       },
     ],
     "arrow-parens": ["error", "always"],
-    "space-before-function-paren": ["error", {
-      anonymous: "always",
-      named: "always",
-      asyncArrow: "always",
-    }],
+    "space-before-function-paren": [
+      "error",
+      {
+        anonymous: "always",
+        named: "always",
+        asyncArrow: "always",
+      },
+    ],
     "@typescript-eslint/explicit-member-accessibility": 2,
     "no-use-before-define": [0],
     "@typescript-eslint/no-use-before-define": [1],

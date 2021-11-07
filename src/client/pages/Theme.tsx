@@ -32,6 +32,6 @@ const _Theme = () => {
 
 export const Theme = {
   component: _Theme,
-  title: "Theme",
+  // title: "Theme",
   path: "/theme",
 };

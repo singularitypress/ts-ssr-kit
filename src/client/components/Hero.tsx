@@ -7,7 +7,7 @@ export const Hero = (props: IHeroProps) => {
 
   const renderVideo = () => {
     return (
-      <video muted={true} loop autoPlay={true} src={video.src} style={{ minHeight: height, ...style }} />
+      <video muted={true} loop autoPlay={true} src={video?.src} style={{ minHeight: height, ...style }} />
     );
   };
 

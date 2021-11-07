@@ -22,8 +22,12 @@ const config = () => {
         {
           test: /\.(t|j)sx?$/,
           include: APP_DIR,
-          loader: "ts-loader",
+          loader: "esbuild-loader",
           exclude: NODE_MODULES,
+          options: {
+            loader: "tsx",
+            target: "es2020",
+          },
         },
         {
           enforce: "pre",
@@ -64,7 +68,7 @@ const config = () => {
           ],
         },
         {
-          test: /\.(woff|woff2|eot|ttf|otf)$/,
+          test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
           use: [
             {
               loader: "file-loader",

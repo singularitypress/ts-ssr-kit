@@ -8,5 +8,5 @@ const _NotFoundPage = ({ staticContext = {} }: NotFoundPageProps) => {
 
 export const NotFoundPage = {
   component: _NotFoundPage,
-  title: "404 Not Found",
+  // title: "404 Not Found",
 };
