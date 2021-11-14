@@ -6,3 +6,4 @@ server/public
 node_modules
 build
 public
+.env

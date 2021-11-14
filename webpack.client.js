@@ -9,7 +9,7 @@ const NAME = "bundle";
 
 const config = () => {
   return {
-    entry: [`${APP_DIR}/client.tsx`, `${STYLE_DIR}/index.scss`],
+    entry: [`${APP_DIR}/client.entry.tsx`],
     resolve: {
       extensions: [".ts", ".js", ".json", ".tsx", ".jsx"],
     },
@@ -22,64 +22,14 @@ const config = () => {
         {
           test: /\.(t|j)sx?$/,
           include: APP_DIR,
-          loader: "esbuild-loader",
+          loader: "swc-loader",
           exclude: NODE_MODULES,
-          options: {
-            loader: "tsx",
-            target: "es2020",
-          },
         },
         {
           enforce: "pre",
           test: /\.js$/,
           include: APP_DIR,
           loader: "source-map-loader",
-        },
-        {
-          test: /\.scss$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: `${NAME}.css`,
-                context: BUILD_DIR,
-                outputPath: "./",
-                publicPath: "../",
-              },
-            },
-            {
-              loader: "extract-loader",
-            },
-            {
-              loader: "css-loader",
-              options: {
-                sourceMap: false,
-              },
-            },
-            {
-              loader: "postcss-loader",
-            },
-            {
-              loader: "sass-loader",
-              options: {
-                sourceMap: true,
-              },
-            },
-          ],
-        },
-        {
-          test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: "[name].[ext]",
-                context: FONT_DIR,
-                outputPath: "./",
-                publicPath: "/",
-              },
-            },
-          ],
         },
       ],
     },

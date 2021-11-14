@@ -1,20 +1,9 @@
-import { IAdmin } from "./pages";
-
-export * from "./Base";
-export * from "./pages";
 export * from "./components";
 export * from "./utils";
 
 export interface Users {
   id: number;
   name: string;
-}
-
-export interface State {
-  admins: IAdmin[];
-  users: Array<Users>;
-  auth: any;
-  graphCSV: string;
 }
 
 export interface StaticContext {

@@ -9,7 +9,7 @@ const NAME = "bundle";
 const config = () => {
   return {
     target: "node",
-    entry: [`${APP_DIR}/server.tsx`],
+    entry: [`${APP_DIR}/server.entry.tsx`],
     resolve: {
       extensions: [".ts", ".js", ".json", ".tsx", ".jsx"],
     },
@@ -22,12 +22,8 @@ const config = () => {
         {
           test: /\.(t|j)sx?$/,
           include: APP_DIR,
-          loader: "esbuild-loader",
+          loader: "swc-loader",
           exclude: NODE_MODULES,
-          options: {
-            loader: "tsx",
-            target: "es2020",
-          },
         },
         {
           enforce: "pre",
