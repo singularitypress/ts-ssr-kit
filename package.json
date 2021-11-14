@@ -8,7 +8,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "npm-run-all --parallel dev:server dev:*",
-		"dev:server": "nodemon --watch ./src/** -e ts,json,tsx --exec \"npx webpack --config webpack.server.js --mode development && node build/bundle.js\"",
+		"dev:server": "nodemon --watch ./src/** -e ts,json,tsx --exec \"npx webpack --config webpack.server.js --mode development && node build/bundle.js\" --MODE=dev",
 		"dev:build-client": "webpack --config webpack.client.js --mode development --watch",
 		"start": "node build/bundle.js",
 		"build": "webpack --config webpack.client.js --mode production && webpack --config webpack.server.js --mode production",
