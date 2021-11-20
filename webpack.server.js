@@ -1,6 +1,8 @@
 const path = require("path");
 const webpackNodeExternals = require("webpack-node-externals");
 
+const style = require("./webpack.style");
+
 const BUILD_DIR = path.resolve(__dirname, "build");
 const APP_DIR = path.resolve(__dirname, "src");
 const NODE_MODULES = path.resolve(__dirname, "node_modules");
@@ -28,9 +30,11 @@ const config = () => {
         {
           enforce: "pre",
           test: /\.js$/,
+          exclude: NODE_MODULES,
           include: APP_DIR,
           loader: "source-map-loader",
         },
+        style.rules,
       ],
     },
     devServer: {
@@ -39,6 +43,7 @@ const config = () => {
 
     // Exclude imports in the project from the bundle.js (server-side only) as the server will now dynamically pull it in from node_modules.
     externals: [webpackNodeExternals()],
+    plugins: style.plugins,
   };
 };
 

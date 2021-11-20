@@ -14,7 +14,7 @@ app.use(compression());
 
 app.use(express.static("public"));
 
-const env = process.argv.pop() === "--MODE=dev" ? "development" : "production";
+const env = process.argv.pop() === "--MODE=dev" ? "development" : "production.min";
 
 app.get("*", (req, res) => {
   const helmet = Helmet.renderStatic();
@@ -24,6 +24,10 @@ app.get("*", (req, res) => {
   const html = ReactDOMServer.renderToString(
     <html {...htmlAttrs}>
       <head>
+        <meta charSet="utf-8" />
+        <meta httpEquiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/main.css" />
         {helmet.title.toComponent()}
         {helmet.meta.toComponent()}
         {helmet.link.toComponent()}
@@ -37,6 +41,7 @@ app.get("*", (req, res) => {
         <script crossOrigin='true' src={`https://unpkg.com/react@17/umd/react.${env}.js`}></script>
         <script crossOrigin='true' src={`https://unpkg.com/react-dom@17/umd/react-dom.${env}.js`}></script>
         <script async defer src='/bundle.js'></script>
+        {helmet.script.toComponent()}
       </body>
     </html>,
   );

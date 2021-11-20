@@ -1,17 +1,17 @@
 const path = require("path");
 
+const style = require("./webpack.style");
+
 const BUILD_DIR = path.resolve(__dirname, "public");
-const FONT_DIR = path.resolve(__dirname, "assets/fonts");
 const APP_DIR = path.resolve(__dirname, "src");
-const STYLE_DIR = path.resolve(__dirname, "style");
 const NODE_MODULES = path.resolve(__dirname, "node_modules");
 const NAME = "bundle";
 
 const config = () => {
   return {
-    entry: [`${APP_DIR}/client.entry.tsx`],
+    entry: [`${APP_DIR}/client.entry.tsx`, `${APP_DIR}/style/index.scss`],
     resolve: {
-      extensions: [".ts", ".js", ".json", ".tsx", ".jsx"],
+      extensions: [".ts", ".js", ".json", ".tsx", ".jsx", ".scss"],
     },
     output: {
       path: BUILD_DIR,
@@ -29,8 +29,10 @@ const config = () => {
           enforce: "pre",
           test: /\.js$/,
           include: APP_DIR,
+          exclude: NODE_MODULES,
           loader: "source-map-loader",
         },
+        style.rules,
       ],
     },
     devServer: {
@@ -42,6 +44,7 @@ const config = () => {
       axios: "axios",
       d3: "d3",
     },
+    plugins: style.plugins,
   };
 };
 
