@@ -7,7 +7,7 @@ export const Home = () => {
       <Helmet>
         <title>Home</title>
       </Helmet>
-      <div>
+      <div className="container mx-auto">
         Home
       </div>
     </>

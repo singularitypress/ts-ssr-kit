@@ -34,7 +34,7 @@ const config = () => {
           include: APP_DIR,
           loader: "source-map-loader",
         },
-        style.rules,
+        style.scss,
       ],
     },
     devServer: {

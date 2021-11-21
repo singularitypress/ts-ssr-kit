@@ -2,7 +2,7 @@ module.exports = {
   darkMode: "media",
   purge: {
     enabled: true,
-    content: ["./src/client/**/*.tsx"],
+    content: ["./src/**/*.tsx"],
   },
   theme: {
     extend: {

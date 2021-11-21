@@ -32,7 +32,7 @@ const config = () => {
           exclude: NODE_MODULES,
           loader: "source-map-loader",
         },
-        style.rules,
+        style.scss,
       ],
     },
     devServer: {

@@ -9,7 +9,7 @@ module.exports = {
       chunkFilename: isProd ? "[id].[contenthash].css" : "[id].css",
     }),
   ],
-  rules: {
+  scss: {
     test: /(\.module)?.(sass|scss)$/,
     use: [
       MiniCssExtractPlugin.loader,
