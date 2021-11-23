@@ -6,6 +6,11 @@ module.exports = {
   },
   theme: {
     extend: {
+      colors: {
+        "theme-brand": "#efa118",
+        "theme-base": "#3f3d3d",
+        "theme-accent": "#faf9f5",
+      },
       fontFamily: {
         sans: ["Type-M"],
         bold: ["Type-DB"],
