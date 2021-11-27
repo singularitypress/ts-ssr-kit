@@ -11,10 +11,6 @@ module.exports = {
         "theme-base": "#3f3d3d",
         "theme-accent": "#faf9f5",
       },
-      fontFamily: {
-        sans: ["Type-M"],
-        bold: ["Type-DB"],
-      },
     },
     screens: {
       sm: { min: "576px", max: "767.98px" },

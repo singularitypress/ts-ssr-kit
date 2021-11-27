@@ -1,5 +1,5 @@
-import React, { ReactChildren } from "react";
-import { Header } from "../components";
+import React from "react";
+import { Nav } from "../components";
 import { NAV } from "../content";
 
 interface IProps {
@@ -9,8 +9,8 @@ interface IProps {
 export const Base = ({ children }: IProps) => {
   return (
     <>
-      <Header navItems={NAV} />
-      <main>
+      <Nav navItems={NAV} />
+      <main className="pt-16">
         {children}
       </main>
     </>
