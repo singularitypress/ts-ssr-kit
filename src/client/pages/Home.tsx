@@ -7,14 +7,24 @@ import { Base } from "../templates";
 
 export const Home = () => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
-  const [searchVal, setSearchVal] = useState<string>("");
+  const [inclusionTerms, setInclusionTerms] = useState<string>("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const include = `["${inclusionTerms.split(", ").join("\",\"")}"]`;
+    const exclude = `["${[
+      "7027",
+      "Payment BNS",
+      "VOUCHER/RETURN",
+      "ANNUAL FEE REVERSAL",
+      "pmtsWA AMT 79.00 UNITED STATES DOLLAR",
+      "AMZN Mktp US Amzn.com/billWA AMT 105.98 UNITED STATES DOLLAR",
+    ].join("\",\"")}"]`;
+
     const query = `
       {
-        transactions(include: ["${searchVal}"] exclude: ["7027", "Payment BNS", "VOUCHER/RETURN", "ANNUAL FEE REVERSAL", "pmtsWA AMT 79.00 UNITED STATES DOLLAR", "AMZN Mktp US Amzn.com/billWA AMT 105.98 UNITED STATES DOLLAR"]) {
+        transactions(include: ${include} exclude: ${exclude}) {
           ...transactionInfo
         }
       }
@@ -51,7 +61,7 @@ export const Home = () => {
             <Input
               type="text"
               onChange={(e) => {
-                setSearchVal(`${e?.target.value}`);
+                setInclusionTerms(`${e?.target.value}`);
               }}/>
           </FormField>
         </form>
