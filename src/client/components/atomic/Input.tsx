@@ -1,15 +1,17 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 interface IProps {
   type: "text" | "number";
   placeholder?: string;
+  onChange?: (e?: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input = ({ type, placeholder }: IProps) => {
+export const Input = ({ type, placeholder, onChange }: IProps) => {
   return (
     <input
       type={type}
       placeholder={placeholder}
+      onChange={onChange}
       className={`
         mt-0
         block
