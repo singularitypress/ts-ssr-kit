@@ -44,10 +44,12 @@ app.get("*", (req, res) => {
         {helmet.meta.toComponent()}
         {helmet.link.toComponent()}
       </head>
-      <body className="content" {...bodyAttrs}>
-        <StaticRouter location={req.url}>
-          <App />
-        </StaticRouter>
+      <body {...bodyAttrs}>
+        <div className="content">
+          <StaticRouter location={req.url}>
+            <App />
+          </StaticRouter>
+        </div>
         <script
           crossOrigin="true"
           src={`https://unpkg.com/react@17/umd/react.${env}.js`}
@@ -63,6 +65,7 @@ app.get("*", (req, res) => {
           referrerPolicy="no-referrer"></script>
         <script async defer src="/bundle.js"></script>
         {helmet.script.toComponent()}
+
       </body>
     </html>,
   );

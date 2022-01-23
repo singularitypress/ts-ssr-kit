@@ -6,6 +6,7 @@ import { Heading } from "../components";
 import { API } from "../content";
 import { Base } from "../templates";
 import { datetimeNormalization } from "../utils";
+import { ITransaction } from "../types";
 
 interface IData {
   description?: string;
@@ -13,7 +14,7 @@ interface IData {
   value: number;
 }
 
-export const Home = () => {
+export const Spending = () => {
   const [data, setData] = useState<IData[]>([]);
 
   const accounts = [
@@ -28,10 +29,6 @@ export const Home = () => {
     {
       label: "VISA",
       value: "visa",
-    },
-    {
-      label: "All",
-      value: "amex\",\"mastercard\",\"visa",
     },
   ];
 
@@ -96,7 +93,13 @@ export const Home = () => {
         </div>
         <div className="flex">
           {
-            accounts.map(({ label, value }) => (
+            [
+              ...accounts,
+              {
+                label: "All",
+                value: accounts.map(({ value }) => value).join("\",\""),
+              },
+            ].map(({ label, value }) => (
               <div key={label} className="mr-4">
                 <button
                   className="border-2 rounded-full border-theme-accent px-4 py-2 hover:bg-theme-accent hover:text-theme-base"
