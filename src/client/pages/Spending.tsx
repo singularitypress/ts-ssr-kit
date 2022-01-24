@@ -1,6 +1,7 @@
 import { ResponsiveCalendar } from "@nivo/calendar";
 import { request, gql } from "graphql-request";
-import React, { MouseEvent, useState } from "react";
+import * as graphqlWs from "graphql-ws";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Heading } from "../components";
 import { API } from "../content";
@@ -16,6 +17,56 @@ interface IData {
 
 export const Spending = () => {
   const [data, setData] = useState<IData[]>([]);
+  const [client, setClient] = useState<graphqlWs.Client>();
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (client) {
+        client
+          .subscribe(
+            { query },
+            {
+              next: ({ data: res }) => {
+                setData(
+                  ((res as any).transactions as ITransaction[])
+                    .map(({ description, amount, date }) => ({
+                      description,
+                      value: -1 * (amount || 0),
+                      day: datetimeNormalization(new Date(`${date}`), "YYYY-MM-DD"),
+                    }))
+                    .reduce((currList, currTx) => {
+                      if (currTx.day === "2017-06-24" || currTx.day === "2017-06-25" || currTx.day === "2017-06-26") {
+                        console.log(currTx);
+                      }
+                      if (currList.length === 0) {
+                        return [currTx];
+                      } else {
+                        if (currList[currList.length - 1].day === currTx.day) {
+                          const newTx = {
+                            ...currList[currList.length - 1],
+                            value: currList[currList.length - 1].value + currTx.value,
+                          };
+                          currList[currList.length - 1] = newTx;
+                          return currList;
+                        } else return [...currList, currTx];
+                      }
+                    }, [] as IData[]),
+                );
+              },
+              error: () => console.log("error"),
+              complete: () => client.dispose(),
+            },
+          );
+      } else {
+        setClient(
+          graphqlWs.createClient({
+            url: "ws://localhost:4000/graphql",
+          }),
+        );
+      }
+    }
+  }, [query]);
 
   const accounts = [
     {
@@ -34,41 +85,17 @@ export const Spending = () => {
 
   const handleSubmit = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     const { value: account } = e.target as HTMLButtonElement;
-    const q = gql`
+    setQuery(
+      gql`
       query {
-        transactions(max: 0, account: ["${account}"]) {
+        transactions(account: ["${account}"]) {
           date,
           amount,
           description
         }
       }
-    `;
-
-    request(API.LOCAL, q)
-      .then((res) => {
-        setData(
-          (res.transactions as ITransaction[])
-            .map(({ description, amount, date }) => ({
-              description,
-              value: -1 * (amount || 0),
-              day: datetimeNormalization(new Date(`${date}`), "YYYY-MM-DD"),
-            }))
-            .reduce((currList, currTx) => {
-              if (currList.length === 0) {
-                return [currTx];
-              } else {
-                if (currList[currList.length - 1].day === currTx.day) {
-                  const newTx = {
-                    ...currList[currList.length - 1],
-                    value: currList[currList.length - 1].value + currTx.value,
-                  };
-                  currList[currList.length - 1] = newTx;
-                  return currList;
-                } else return [...currList, currTx];
-              }
-            }, [] as IData[]),
-        );
-      });
+    `,
+    );
   };
 
   const colours = [
