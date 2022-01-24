@@ -1,8 +1,9 @@
-import { ResponsiveCalendar } from "@nivo/calendar";
-import { request, gql } from "graphql-request";
-import * as graphqlWs from "graphql-ws";
 import React, { MouseEvent, useEffect, useState } from "react";
+import { ResponsiveCalendar } from "@nivo/calendar";
+import { gql } from "graphql-request";
+import * as graphqlWs from "graphql-ws";
 import { Helmet } from "react-helmet";
+
 import { Heading } from "../components";
 import { API } from "../content";
 import { Base } from "../templates";
@@ -15,170 +16,173 @@ interface IData {
   value: number;
 }
 
-export const Spending = () => {
-  const [data, setData] = useState<IData[]>([]);
-  const [client, setClient] = useState<graphqlWs.Client>();
-  const [query, setQuery] = useState("");
+export const Spending = {
+  route: "/spending",
+  component: () => {
+    const [data, setData] = useState<IData[]>([]);
+    const [client, setClient] = useState<graphqlWs.Client>();
+    const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (client) {
-        client
-          .subscribe(
-            { query },
-            {
-              next: ({ data: res }) => {
-                setData(
-                  ((res as any).transactions as ITransaction[])
-                    .map(({ description, amount, date }) => ({
-                      description,
-                      value: -1 * (amount || 0),
-                      day: datetimeNormalization(new Date(`${date}`), "YYYY-MM-DD"),
-                    }))
-                    .reduce((currList, currTx) => {
-                      if (currTx.day === "2017-06-24" || currTx.day === "2017-06-25" || currTx.day === "2017-06-26") {
-                        console.log(currTx);
-                      }
-                      if (currList.length === 0) {
-                        return [currTx];
-                      } else {
-                        if (currList[currList.length - 1].day === currTx.day) {
-                          const newTx = {
-                            ...currList[currList.length - 1],
-                            value: currList[currList.length - 1].value + currTx.value,
-                          };
-                          currList[currList.length - 1] = newTx;
-                          return currList;
-                        } else return [...currList, currTx];
-                      }
-                    }, [] as IData[]),
-                );
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        if (client) {
+          client
+            .subscribe(
+              { query },
+              {
+                next: ({ data: res }) => {
+                  setData(
+                    ((res as any).transactions as ITransaction[])
+                      .map(({ description, amount, date }) => ({
+                        description,
+                        value: -1 * (amount || 0),
+                        day: datetimeNormalization(new Date(`${date}`), "YYYY-MM-DD"),
+                      }))
+                      .reduce((currList, currTx) => {
+                        if (currTx.day === "2017-06-24" || currTx.day === "2017-06-25" || currTx.day === "2017-06-26") {
+                          console.log(currTx);
+                        }
+                        if (currList.length === 0) {
+                          return [currTx];
+                        } else {
+                          if (currList[currList.length - 1].day === currTx.day) {
+                            const newTx = {
+                              ...currList[currList.length - 1],
+                              value: currList[currList.length - 1].value + currTx.value,
+                            };
+                            currList[currList.length - 1] = newTx;
+                            return currList;
+                          } else return [...currList, currTx];
+                        }
+                      }, [] as IData[]),
+                  );
+                },
+                error: () => console.log("error"),
+                complete: () => client.dispose(),
               },
-              error: () => console.log("error"),
-              complete: () => client.dispose(),
-            },
+            );
+        } else {
+          setClient(
+            graphqlWs.createClient({
+              url: API.LOCAL,
+            }),
           );
-      } else {
-        setClient(
-          graphqlWs.createClient({
-            url: "ws://localhost:4000/graphql",
-          }),
-        );
-      }
-    }
-  }, [query]);
-
-  const accounts = [
-    {
-      label: "AMEX",
-      value: "amex",
-    },
-    {
-      label: "PC Mastercard",
-      value: "mastercard",
-    },
-    {
-      label: "VISA",
-      value: "visa",
-    },
-  ];
-
-  const handleSubmit = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-    const { value: account } = e.target as HTMLButtonElement;
-    setQuery(
-      gql`
-      query {
-        transactions(account: ["${account}"]) {
-          date,
-          amount,
-          description
         }
       }
-    `,
-    );
-  };
+    }, [query]);
 
-  const colours = [
-    "#003f5c",
-    "#2f4b7c",
-    "#665191",
-    "#a05195",
-    "#d45087",
-    "#f95d6a",
-    "#ff7c43",
-    "#ffa600",
-  ];
+    const accounts = [
+      {
+        label: "AMEX",
+        value: "amex",
+      },
+      {
+        label: "PC Mastercard",
+        value: "mastercard",
+      },
+      {
+        label: "VISA",
+        value: "visa",
+      },
+    ];
 
-  return (
-    <Base>
-      <Helmet>
-        <title>Home</title>
-      </Helmet>
-      <div className="container mx-auto">
-        <div className="pt-4 mb-4 text-center">
-          <Heading variant="h1">Brighthouse</Heading>
-        </div>
-        <div className="flex">
+    const handleSubmit = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+      const { value: account } = e.target as HTMLButtonElement;
+      setQuery(
+        gql`
+        query {
+          transactions(account: ["${account}"]) {
+            date,
+            amount,
+            description
+          }
+        }
+      `,
+      );
+    };
+
+    const colours = [
+      "#003f5c",
+      "#2f4b7c",
+      "#665191",
+      "#a05195",
+      "#d45087",
+      "#f95d6a",
+      "#ff7c43",
+      "#ffa600",
+    ];
+
+    return (
+      <Base>
+        <Helmet>
+          <title>Home</title>
+        </Helmet>
+        <div className="container mx-auto">
+          <div className="pt-4 mb-4 text-center">
+            <Heading variant="h1">Brighthouse</Heading>
+          </div>
+          <div className="flex">
+            {
+              [
+                ...accounts,
+                {
+                  label: "All",
+                  value: accounts.map(({ value }) => value).join("\",\""),
+                },
+              ].map(({ label, value }) => (
+                <div key={label} className="mr-4">
+                  <button
+                    className="border-2 rounded-full border-theme-accent px-4 py-2 hover:bg-theme-accent hover:text-theme-base"
+                    value={value}
+                    onClick={handleSubmit}>
+                    {label}
+                  </button>
+                </div>
+              ))
+            }
+          </div>
           {
-            [
-              ...accounts,
-              {
-                label: "All",
-                value: accounts.map(({ value }) => value).join("\",\""),
-              },
-            ].map(({ label, value }) => (
-              <div key={label} className="mr-4">
-                <button
-                  className="border-2 rounded-full border-theme-accent px-4 py-2 hover:bg-theme-accent hover:text-theme-base"
-                  value={value}
-                  onClick={handleSubmit}>
-                  {label}
-                </button>
-              </div>
-            ))
+            data.length > 0 && !!(document)
+              ? (
+                <div className="h-screen">
+                  <ResponsiveCalendar
+                    data={data}
+                    from={data[0].day}
+                    theme={{
+                      textColor: "#FFF",
+                      tooltip: {
+                        container: {
+                          background: "#3f3d3d",
+                        },
+                      },
+                    }}
+                    to={ datetimeNormalization(new Date(), "YYYY-MM-DD")}
+                    emptyColor="#7d7b7a"
+                    colors={colours}
+                    margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+                    yearSpacing={40}
+                    monthBorderColor="#3f3d3d"
+                    dayBorderWidth={2}
+                    dayBorderColor="#3f3d3d"
+                    legends={[
+                      {
+                        anchor: "top",
+                        direction: "row",
+                        translateY: 36,
+                        itemCount: colours.length,
+                        itemWidth: 42,
+                        itemHeight: 36,
+                        itemsSpacing: 14,
+                        itemDirection: "right-to-left",
+                      },
+                    ]}
+                  />
+                </div>
+              )
+              : <></>
           }
         </div>
-        {
-          data.length > 0 && !!(document)
-            ? (
-              <div className="h-screen">
-                <ResponsiveCalendar
-                  data={data}
-                  from={data[0].day}
-                  theme={{
-                    textColor: "#FFF",
-                    tooltip: {
-                      container: {
-                        background: "#3f3d3d",
-                      },
-                    },
-                  }}
-                  to={ datetimeNormalization(new Date(), "YYYY-MM-DD")}
-                  emptyColor="#7d7b7a"
-                  colors={colours}
-                  margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
-                  yearSpacing={40}
-                  monthBorderColor="#3f3d3d"
-                  dayBorderWidth={2}
-                  dayBorderColor="#3f3d3d"
-                  legends={[
-                    {
-                      anchor: "top",
-                      direction: "row",
-                      translateY: 36,
-                      itemCount: colours.length,
-                      itemWidth: 42,
-                      itemHeight: 36,
-                      itemsSpacing: 14,
-                      itemDirection: "right-to-left",
-                    },
-                  ]}
-                />
-              </div>
-            )
-            : <></>
-        }
-      </div>
-    </Base>
-  );
+      </Base>
+    );
+  },
 };

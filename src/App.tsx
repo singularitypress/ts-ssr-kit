@@ -1,14 +1,26 @@
 import React from "react";
 import { Routes, Route } from "react-router";
-import { About, Home, Income, Spending } from "./client/pages";
+import * as pages from "./client/pages";
+
+interface IPages {
+  [key: string]: {
+    route: string;
+    component: () => JSX.Element;
+  };
+}
 
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/spending" element={<Spending />} />
-      <Route path="/income" element={<Income />} />
+      {Object.keys(pages).map((page) => {
+        return (
+          <Route
+            key={(pages as IPages)[page].route}
+            path={(pages as IPages)[page].route}
+            element={(pages as IPages)[page].component()}
+          />
+        );
+      })}
     </Routes>
   );
 };

@@ -1,3 +1,3 @@
 export const API = {
-  LOCAL: "http://localhost:4000/graphql",
+  LOCAL: "ws://localhost:4000/graphql",
 };

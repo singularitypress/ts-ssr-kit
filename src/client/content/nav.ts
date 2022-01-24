@@ -15,4 +15,8 @@ export const NAV = [
     label: "Income",
     href: "/income",
   },
+  {
+    label: "Games",
+    href: "/games",
+  },
 ];
