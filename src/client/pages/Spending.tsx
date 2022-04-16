@@ -1,7 +1,7 @@
 import React, { MouseEvent, useEffect, useState } from "react";
 import { ResponsiveCalendar } from "@nivo/calendar";
 import { gql } from "graphql-request";
-import * as graphqlWs from "graphql-ws";
+import { Client, createClient } from "graphql-ws";
 import { Helmet } from "react-helmet";
 
 import { Heading } from "../components";
@@ -20,7 +20,7 @@ export const Spending = {
   route: "/spending",
   component: () => {
     const [data, setData] = useState<IData[]>([]);
-    const [client, setClient] = useState<graphqlWs.Client>();
+    const [client, setClient] = useState<Client>();
     const [query, setQuery] = useState("");
 
     useEffect(() => {
@@ -39,9 +39,6 @@ export const Spending = {
                         day: datetimeNormalization(new Date(`${date}`), "YYYY-MM-DD"),
                       }))
                       .reduce((currList, currTx) => {
-                        if (currTx.day === "2017-06-24" || currTx.day === "2017-06-25" || currTx.day === "2017-06-26") {
-                          console.log(currTx);
-                        }
                         if (currList.length === 0) {
                           return [currTx];
                         } else {
@@ -63,7 +60,7 @@ export const Spending = {
             );
         } else {
           setClient(
-            graphqlWs.createClient({
+            createClient({
               url: API.LOCAL,
             }),
           );
@@ -142,44 +139,42 @@ export const Spending = {
             }
           </div>
           {
-            data.length > 0 && !!(document)
-              ? (
-                <div className="h-screen">
-                  <ResponsiveCalendar
-                    data={data}
-                    from={data[0].day}
-                    theme={{
-                      textColor: "#FFF",
-                      tooltip: {
-                        container: {
-                          background: "#3f3d3d",
-                        },
+            (data.length > 0 && !!(document)) && (
+              <div className="h-screen">
+                <ResponsiveCalendar
+                  data={data}
+                  from={data[0].day}
+                  theme={{
+                    textColor: "#FFF",
+                    tooltip: {
+                      container: {
+                        background: "#3f3d3d",
                       },
-                    }}
-                    to={ datetimeNormalization(new Date(), "YYYY-MM-DD")}
-                    emptyColor="#7d7b7a"
-                    colors={colours}
-                    margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
-                    yearSpacing={40}
-                    monthBorderColor="#3f3d3d"
-                    dayBorderWidth={2}
-                    dayBorderColor="#3f3d3d"
-                    legends={[
-                      {
-                        anchor: "top",
-                        direction: "row",
-                        translateY: 36,
-                        itemCount: colours.length,
-                        itemWidth: 42,
-                        itemHeight: 36,
-                        itemsSpacing: 14,
-                        itemDirection: "right-to-left",
-                      },
-                    ]}
-                  />
-                </div>
-              )
-              : <></>
+                    },
+                  }}
+                  to={datetimeNormalization(new Date(), "YYYY-MM-DD")}
+                  emptyColor="#7d7b7a"
+                  colors={colours}
+                  margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+                  yearSpacing={40}
+                  monthBorderColor="#3f3d3d"
+                  dayBorderWidth={2}
+                  dayBorderColor="#3f3d3d"
+                  legends={[
+                    {
+                      anchor: "top",
+                      direction: "row",
+                      translateY: 36,
+                      itemCount: colours.length,
+                      itemWidth: 42,
+                      itemHeight: 36,
+                      itemsSpacing: 14,
+                      itemDirection: "right-to-left",
+                    },
+                  ]}
+                />
+              </div>
+            )
           }
         </div>
       </Base>
